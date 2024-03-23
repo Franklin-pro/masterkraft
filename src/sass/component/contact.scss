@@ -1,0 +1,77 @@
+.contacts{
+    background-color: #f0f4f9;
+    display: flex;
+    justify-content: space-around;
+    padding: 5rem 3rem;
+    
+    .contact-left{
+        .contact-head{
+            font-size: 2rem;
+            width: 80%;
+            margin: 0 auto;
+            padding:  0 0 2rem;
+            h1{
+                font-weight: 900;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+        }
+        .bottom{
+            font-size: 2rem;
+            width: 80%;
+            margin: 0 auto;
+            line-height: 3rem;
+            display: flex;
+            flex-direction: column;
+            h2{
+                color: #fdc800;
+                padding: 2rem 0;
+                font-size: 3rem;
+            }
+            .bold{
+                display: flex;
+                flex-direction: column;
+                color: #0e5aa4;
+                padding-top: 1rem;
+            }
+        }
+    }
+    .contact-right{
+        // background-color: green;
+        width: 100%;
+        .field{
+            font-size: 3rem;
+           padding: 1rem;
+        }
+        label{
+            font-size: 1.8rem;
+        }
+        input{
+            font-size: 2rem;
+        }
+        .select{
+            width: 40%;
+            border: none;
+            background:transparent;
+            border-bottom: 2px solid black;
+            padding: 1rem 0 2rem;
+        }
+        .sample{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .message{
+            width: 80%;
+        }
+    }
+}
+@media screen and (max-width:960px) {
+    .contacts{
+        flex-direction: column;
+        .contact-right{
+            .sample{
+                flex-direction: column;
+            }
+        }
+    }
+}
