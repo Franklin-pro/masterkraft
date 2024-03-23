@@ -29,12 +29,12 @@ const UploadVideo = () => {
 
   function handleUpload() {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('video', file);
     formData.append('videoTitle', upload.videoTitle);
     formData.append('videoDescription', upload.videoDescription);
     formData.append('youtubeLink', upload.youtubeLink);
 
-    fetch('https://localhost:2000/API/video/post', {
+    fetch('http://localhost:3030/API/video/post', {
       method: 'POST',
       body: formData,
     })
@@ -55,7 +55,7 @@ const UploadVideo = () => {
   return (
     <>
       <h1>UPLOAD VIDEO</h1>
-      <Form {...layout} name="nest-messages" onFinish={onFinish} style={{ maxWidth: 600 }}>
+      <Form {...layout} name="nest-messages" onFinish={onFinish} style={{ maxWidth: 600 }} encType='multipart/form-data'>
         <Form.Item
           label="Upload-video"
           rules={[
