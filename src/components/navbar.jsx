@@ -45,7 +45,7 @@ const handleClose = () =>{
                 <ul className={isMobile?'openNav':'navlink'}
                     onClick={()=>setIsMobile(false)}>
                     <li>
-                        <a href='@' className='link'>Home</a>
+                        <a href='./wekraft' className='link'>Home</a>
                     </li>
                     <li>
                         <a href='./toturial' className='link'>Learn</a>
