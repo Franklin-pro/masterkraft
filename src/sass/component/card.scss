@@ -200,6 +200,11 @@
         }
     }
 }
+@media screen and (max-width:953px) {
+    .did{
+        flex-wrap: wrap;
+    }
+}
 .icon-footer{
     background-color: rgb(255, 255, 255);
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.274);

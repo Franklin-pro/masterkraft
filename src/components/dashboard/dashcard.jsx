@@ -1,7 +1,7 @@
 import React from "react";
-import SearchIcon from '@mui/icons-material/Search';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import GroupIcon from '@mui/icons-material/Group';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import GradingIcon from '@mui/icons-material/Grading';
 
 function DashCard(){
     return (
@@ -11,10 +11,10 @@ function DashCard(){
         <div className="cardx">
         <div className="text">
         <h3>230</h3>
-        <p>PRODUCTS</p>
+        <p>VIDEO UPLOADED</p>
         </div>
         <div className="icons">
-        <SearchIcon className="icon"/>
+        <CloudUploadIcon className="icon"/>
        
         </div>
 
@@ -25,7 +25,7 @@ function DashCard(){
         <p>ORDERS</p>
         </div>
         <div className="icons">
-        <BarChartIcon className="icon"/>
+        <GradingIcon className="icon"/>
        
         </div>
 

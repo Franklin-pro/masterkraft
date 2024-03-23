@@ -17,7 +17,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import AssessmentIcon from '@mui/icons-material/Assessment';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import MailIcon from '@mui/icons-material/Mail';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GroupIcon from '@mui/icons-material/Group';
@@ -236,9 +236,9 @@ const usenavigate = useNavigate();
                  justifyContent: 'center',
                }}
              >
-                <AssessmentIcon /> 
+                <CloudUploadIcon /> 
              </ListItemIcon>
-             <ListItemText primary="REPORT" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
+             <ListItemText primary="UPLOAD" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
            </ListItemButton>
          </ListItem>
 

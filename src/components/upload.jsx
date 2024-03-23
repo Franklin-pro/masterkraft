@@ -12,10 +12,9 @@ const layout = {
 
 const UploadVideo = () => {
   const [upload, setUpload] = useState({
-    productName: '',
-    quantityAvailable: '',
-    serialNumber: '',
-    productPrice:'',
+    videoTitle: '',
+    videoDescription: '',
+    youtubeLink: '',
   });
 
   const [file, setFile] = useState();
@@ -24,19 +23,18 @@ const UploadVideo = () => {
     setFile(event.target.files[0]);
     setUpload({
       ...upload,
-      productImage: event.target.files[0],
+      video: event.target.files[0],
     });
   }
 
   function handleUpload() {
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('productName', upload.productName);
-    formData.append('quantityAvailable', upload.quantityAvailable);
-    formData.append('serialNumber', upload.serialNumber);
-    formData.append('productPrice', upload.productPrice);
+    formData.append('videoTitle', upload.videoTitle);
+    formData.append('videoDescription', upload.videoDescription);
+    formData.append('youtubeLink', upload.youtubeLink);
 
-    fetch('https://localhost:2000/API/product/post', {
+    fetch('https://localhost:2000/API/video/post', {
       method: 'POST',
       body: formData,
     })
@@ -56,34 +54,31 @@ const UploadVideo = () => {
 
   return (
     <>
-      <h1>UPLOAD PRODUCT</h1>
+      <h1>UPLOAD VIDEO</h1>
       <Form {...layout} name="nest-messages" onFinish={onFinish} style={{ maxWidth: 600 }}>
         <Form.Item
-          label="Upload-Image"
+          label="Upload-video"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input type="file" name="productImage" onChange={handleFile} />
+          <Input type="file" name="video" onChange={handleFile} />
         </Form.Item>
-        <Form.Item label="productName" rules={[{ required: true }]}>
-          <Input name="productName" onChange={(e) => setUpload({ ...upload, productName: e.target.value })} />
+        <Form.Item label="Title" rules={[{ required: true }]}>
+          <Input name="videoTitle" onChange={(e) => setUpload({ ...upload, videoTitle: e.target.value })} />
         </Form.Item>
-        <Form.Item label="quantityAvailable">
-          <Input name="quantityAvailable" onChange={(e) => setUpload({ ...upload, quantityAvailable: e.target.value })} />
+        <Form.Item label="Description">
+          <Input name="videoDescription" onChange={(e) => setUpload({ ...upload, videoDescription: e.target.value })} />
         </Form.Item>
-        <Form.Item label="serialNumber">
-          <Input name="serialNumber" onChange={(e) => setUpload({ ...upload, serialNumber: e.target.value })} />
-        </Form.Item>
-        <Form.Item label="productPrice">
-          <Input name="productPrice" onChange={(e) => setUpload({ ...upload, productPrice: e.target.value })} />
+        <Form.Item label="Youtube-Link">
+          <Input name="youtubeLink" onChange={(e) => setUpload({ ...upload, youtubeLink: e.target.value })} />
         </Form.Item>
         <Form.Item>
           <div className="btn">
             <Button type="primary" htmlType="submit">
-              UPLOAD-PRODUCT
+              UPLOAD-VIDEO
             </Button>
           </div>
         </Form.Item>
