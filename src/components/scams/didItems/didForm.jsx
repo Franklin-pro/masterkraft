@@ -11,36 +11,26 @@ const layout = {
   },
 };
 
-const Login = () => {
+const DidYou = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    Title: '',
+    Description: '',
   });
 
   const onFinish = async (values) => {
     try {
-      const api = "http://localhost:3030/API/user/login";
+      const api = "http://localhost:3030/API/didyou/post";
       const response = await axios.post(api, {
-        email: formData.email,
-        password: formData.password,
+        Title: formData.Title,
+        Description: formData.Description,
       }, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
-      console.log(response.data.data.user.role)
+      console.log(response.data)
 
-     
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('role', response.data.data.user.role);
-
-      alert("Login successful!");
-
-      if (response.data.data.user.role === 'admin') {
-        window.location.href='./dashboard'
-      } else {
-        window.location.href='./wekraft'
-      }
+      alert("DID YOU KNOW successful posted!");
 
     } catch (error) {
       if (error.response) {
@@ -59,7 +49,7 @@ const Login = () => {
 
   return (
     <>
-      <h1>LOGIN FORM</h1>
+      <h1>DID YOU KNOW FORM</h1>
       <Form
         {...layout}
         name="nest-messages"
@@ -72,32 +62,17 @@ const Login = () => {
         className='formx'
       >
         <Form.Item
-          name="email"
-          label="Email"
-          rules={[
-            {
-              type: 'email',
-              message: 'Please input a valid email!',
-            },
-            {
-              required: true,
-              message: 'Please input your email!',
-            },
-          ]}
+          name="Title"
+          label="Title"
+        
         >
           <Input />
         </Form.Item>
         <Form.Item
-          name="password"
-          label="Password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
+          name="Description"
+          label="description"
         >
-          <Input.Password />
+          <Input />
         </Form.Item>
 
         <Form.Item
@@ -107,7 +82,7 @@ const Login = () => {
           }}
         >
           <Button type="primary" htmlType="submit">
-            LOGIN-NOW
+            DID YOU KNOW
           </Button>
         </Form.Item>
       </Form>
@@ -116,4 +91,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default DidYou;

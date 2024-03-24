@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 
 const layout = {
   labelCol: {
@@ -10,12 +10,13 @@ const layout = {
   },
 };
 
-const UploadVideo = () => {
+const UploadProduct = () => {
   const [upload, setUpload] = useState({
+    productImage: '',
     productName: '',
     quantityAvailable: '',
     serialNumber: '',
-    productPrice:'',
+    productPrice: '',
   });
 
   const [file, setFile] = useState();
@@ -30,22 +31,38 @@ const UploadVideo = () => {
 
   function handleUpload() {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('productImage', upload.productImage, file);
     formData.append('productName', upload.productName);
     formData.append('quantityAvailable', upload.quantityAvailable);
     formData.append('serialNumber', upload.serialNumber);
     formData.append('productPrice', upload.productPrice);
 
-    fetch('https://localhost:2000/API/product/post', {
+    fetch('http://localhost:3030/API/product/post', {
       method: 'POST',
       body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to upload product. Please try again.');
+        }
+        return response.json();
+      })
       .then((result) => {
         console.log('success', result);
+        message.success('Product uploaded successfully');
+        // Reset form fields and selected file
+        setUpload({
+          productImage: '',
+          productName: '',
+          quantityAvailable: '',
+          serialNumber: '',
+          productPrice: '',
+        });
+        setFile(null);
       })
       .catch((error) => {
         console.error('error', error);
+        message.error(error.message || 'Failed to upload product. Please try again.');
       });
   }
 
@@ -59,31 +76,48 @@ const UploadVideo = () => {
       <h1>UPLOAD PRODUCT</h1>
       <Form {...layout} name="nest-messages" onFinish={onFinish} style={{ maxWidth: 600 }}>
         <Form.Item
-          label="Upload-Image"
+          label="Upload Image"
           rules={[
             {
               required: true,
+              message: 'Please select an image',
             },
           ]}
         >
-          <Input type="file" name="productImage" onChange={handleFile} />
+          <Input type="file" name="productImage" onChange={handleFile} accept="image/*" />
         </Form.Item>
-        <Form.Item label="productName" rules={[{ required: true }]}>
-          <Input name="productName" onChange={(e) => setUpload({ ...upload, productName: e.target.value })} />
+        <Form.Item label="Product Name" rules={[{ required: true, message: 'Please enter product name' }]}>
+          <Input
+            name="productName"
+            value={upload.productName}
+            onChange={(e) => setUpload({ ...upload, productName: e.target.value })}
+          />
         </Form.Item>
-        <Form.Item label="quantityAvailable">
-          <Input name="quantityAvailable" onChange={(e) => setUpload({ ...upload, quantityAvailable: e.target.value })} />
+        <Form.Item label="Quantity Available">
+          <Input
+            name="quantityAvailable"
+            value={upload.quantityAvailable}
+            onChange={(e) => setUpload({ ...upload, quantityAvailable: e.target.value })}
+          />
         </Form.Item>
-        <Form.Item label="serialNumber">
-          <Input name="serialNumber" onChange={(e) => setUpload({ ...upload, serialNumber: e.target.value })} />
+        <Form.Item label="Serial Number">
+          <Input
+            name="serialNumber"
+            value={upload.serialNumber}
+            onChange={(e) => setUpload({ ...upload, serialNumber: e.target.value })}
+          />
         </Form.Item>
-        <Form.Item label="productPrice">
-          <Input name="productPrice" onChange={(e) => setUpload({ ...upload, productPrice: e.target.value })} />
+        <Form.Item label="Product Price">
+          <Input
+            name="productPrice"
+            value={upload.productPrice}
+            onChange={(e) => setUpload({ ...upload, productPrice: e.target.value })}
+          />
         </Form.Item>
         <Form.Item>
           <div className="btn">
             <Button type="primary" htmlType="submit">
-              UPLOAD-PRODUCT
+              UPLOAD PRODUCT
             </Button>
           </div>
         </Form.Item>
@@ -92,4 +126,4 @@ const UploadVideo = () => {
   );
 };
 
-export default UploadVideo;
+export default UploadProduct;
