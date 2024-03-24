@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
+import axios from 'axios';
 
 const layout = {
   labelCol: {
@@ -19,30 +20,29 @@ const SignUp = () => {
     confirmpassword: '',
   });
 
-  const onFinish = (values) => {
-    console.log('Received values:', values);
-    fetch(`http://127.0.0.1:3030/API/user/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    })
-      .then(response => {
-        if (response.ok) {
-          console.log(response.status)
-          return response.json();
+  const onFinish = async(values) => {
+    try {
+      const api = "http://localhost:3030/API/user/signup";
+      const response = await axios.post(api, {
+        firstname: formData.firstname,
+        lastname: formData.lastname,
+        email: formData.email,
+        password: formData.password,
+        confirmpassword: formData.confirmpassword
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
         }
-        throw new Error('Network response was not ok.');
-      })
-      .then(data => {
-       alert('Response:', data.response.message);
-        
-      })
-      .catch(error => {
-        console.error('Error during fetch:', error);
-        // Handle error here
       });
+
+      alert(response.data.message)
+    } catch (error) {
+  
+
+      if (error.response) {
+        alert( error.response.data.message);
+      }
+    }
   };
 
   const onFormChange = (changedValues, allValues) => {
