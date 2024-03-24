@@ -30,13 +30,12 @@ const Login = () => {
       });
       console.log(response.data.data.user.role)
 
-      // Store token and role in localStorage
+     
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('role', response.data.data.user.role);
 
       alert("Login successful!");
 
-      // Redirect based on role or perform other actions
       if (response.data.data.user.role === 'admin') {
         window.location.href='./dashboard'
       } else {
@@ -47,7 +46,7 @@ const Login = () => {
       if (error.response) {
         alert(error.response.data.message);
       } else {
-        // Handle network errors or other exceptions
+  
         console.error('Error during API call:', error);
         alert("There was an error processing your request. Please try again later.");
       }
