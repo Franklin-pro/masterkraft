@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-
 const UploadVideo = () => {
   const [upload, setUpload] = useState({
     videoTitle: '',
@@ -17,68 +8,77 @@ const UploadVideo = () => {
     youtubeLink: '',
   });
 
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(null);
 
   function handleFile(event) {
-    setFile(event.target.files[0]);
-    setUpload({
-      ...upload,
-      video: event.target.files[0],
-    });
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
   }
 
   function handleUpload() {
+    if (!file) {
+      console.error('No file selected for upload');
+      return;
+    }
+
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('video', file);
     formData.append('videoTitle', upload.videoTitle);
     formData.append('videoDescription', upload.videoDescription);
     formData.append('youtubeLink', upload.youtubeLink);
 
-    fetch('https://localhost:2000/API/video/post', {
+    fetch('http://localhost:3030/API/video/post', {
       method: 'POST',
       body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to upload video');
+        }
+        return response.json();
+      })
       .then((result) => {
-        console.log('success', result);
+        console.log('Video uploaded successfully:', result);
       })
       .catch((error) => {
-        console.error('error', error);
+        console.error('Error uploading video:', error.message);
       });
   }
 
   const onFinish = () => {
-    console.log(upload);
     handleUpload();
   };
 
   return (
     <>
       <h1>UPLOAD VIDEO</h1>
-      <Form {...layout} name="nest-messages" onFinish={onFinish} style={{ maxWidth: 600 }}>
+      <Form
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        onFinish={onFinish}
+        style={{ maxWidth: 600 }}
+        encType='multipart/form-data'
+      >
         <Form.Item
-          label="Upload-video"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          label="Upload Video"
+          name="video"
+          rules={[{ required: true, message: 'Please select a video file' }]}
         >
-          <Input type="file" name="video" onChange={handleFile} />
+          <Input type="file" onChange={handleFile} />
         </Form.Item>
-        <Form.Item label="Title" rules={[{ required: true }]}>
-          <Input name="videoTitle" onChange={(e) => setUpload({ ...upload, videoTitle: e.target.value })} />
+        <Form.Item label="Title" name="videoTitle" rules={[{ required: true, message: 'Please enter a title' }]}>
+          <Input onChange={(e) => setUpload({ ...upload, videoTitle: e.target.value })} />
         </Form.Item>
-        <Form.Item label="Description">
-          <Input name="videoDescription" onChange={(e) => setUpload({ ...upload, videoDescription: e.target.value })} />
+        <Form.Item label="Description" name="videoDescription">
+          <Input.TextArea onChange={(e) => setUpload({ ...upload, videoDescription: e.target.value })} />
         </Form.Item>
-        <Form.Item label="Youtube-Link">
-          <Input name="youtubeLink" onChange={(e) => setUpload({ ...upload, youtubeLink: e.target.value })} />
+        <Form.Item label="Youtube Link" name="youtubeLink">
+          <Input onChange={(e) => setUpload({ ...upload, youtubeLink: e.target.value })} />
         </Form.Item>
         <Form.Item>
           <div className="btn">
             <Button type="primary" htmlType="submit">
-              UPLOAD-VIDEO
+              UPLOAD VIDEO
             </Button>
           </div>
         </Form.Item>

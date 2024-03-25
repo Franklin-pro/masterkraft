@@ -17,7 +17,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-
+import HelpIcon from '@mui/icons-material/Help';
 import MailIcon from '@mui/icons-material/Mail';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GroupIcon from '@mui/icons-material/Group';
@@ -218,9 +218,9 @@ const usenavigate = useNavigate();
                  justifyContent: 'center',
                }}
              >
-                <MailIcon /> 
+                <HelpIcon  /> 
              </ListItemIcon>
-             <ListItemText primary="EMAIL" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/messages")}}/>
+             <ListItemText primary="DID YOU KNOW" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/messages")}}/>
            </ListItemButton>
          </ListItem>
 
@@ -242,6 +242,27 @@ const usenavigate = useNavigate();
                 <CloudUploadIcon/> 
              </ListItemIcon>
              <ListItemText primary="UPLOAD" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
+           </ListItemButton>
+         </ListItem>
+
+         <ListItem key="ORDERING" disablePadding sx={{ display: 'block' }}>
+           <ListItemButton
+             sx={{
+               minHeight: 48,
+               justifyContent: open ? 'initial' : 'center',
+               px: 2.5,
+             }}
+           >
+             <ListItemIcon
+               sx={{
+                 minWidth: 0,
+                 mr: open ? 3 : 'auto',
+                 justifyContent: 'center',
+               }}
+             >
+                <MailIcon/> 
+             </ListItemIcon>
+             <ListItemText primary="EMAIL MESSAGE" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
            </ListItemButton>
          </ListItem>
 

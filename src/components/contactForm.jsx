@@ -1,5 +1,7 @@
-import React from 'react';
-import { Button, Form, Input,Select } from 'antd';
+import React, { useState } from 'react';
+import { Button, Form, Input, Select } from 'antd';
+import axios from 'axios';
+
 const layout = {
   labelCol: {
     span: 8,
@@ -9,96 +11,109 @@ const layout = {
   },
 };
 
+const Contacts = () => {
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    schoolname: "",
+    course:"",
+    phonenumber: "",
+    message: "",
+    province: ""
+  });
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
+  const handleSelectChange = (value) => {
+    setFormData({ ...formData, province: value });
+  };
 
-const onFinish = (values) => {
-  console.log(values);
-};
-const Contacts = () => (
-  <Form
-    {...layout}
-    name="nest-messages"
-    onFinish={onFinish}
-    style={{
-      maxWidth: 600,
-    }}
-  
-  >
-    <Form.Item
-    
-      label="FullName"
-    >
-      <Input />
-    </Form.Item>
-    <Form.Item
-      
-      label="Email"
-      rules={[
-        {
-          type: 'email',
-        },
-      ]}
-    >
-      <Input />
-    
- 
-    
-    </Form.Item>
-    <Form.Item
-    
-      label="School-Name"
-      rules={[
-        {
-          type: 'email',
-        },
-      ]}
-    >
-      <Input />
-    
- 
-    
-    </Form.Item>
-    <Form.Item
-      
-      label="Phone-Number"
-      rules={[
-        {
-          type: 'email',
-        },
-      ]}
-    >
-      <Input />
-    
- 
-    
-    </Form.Item>
+  const handleSubmit = async () => {
+    try {
+      const api = "http://localhost:3030/API/contact/post";
+      const response = await axios.post(api, formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      alert(`thank you ${response.data.datas.fullname} you message was sent`);
 
-    <Form.Item label="Select your province">
-        <Select>
-          <Select.Option value="east">Eastern province</Select.Option>
-          <Select.Option value="west">Western province</Select.Option>
-          <Select.Option value="sourth">Sourthern province</Select.Option>
-          <Select.Option value="north">Northern province</Select.Option>
-          <Select.Option value="kigali">Kigali city</Select.Option>
-        </Select>
-      </Form.Item>
-  
- 
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      }
+    }
+  };
 
-    <Form.Item name={['user', 'introduction']} label="Introduction">
-      <Input.TextArea />
-    </Form.Item>
-    <Form.Item
-      wrapperCol={{
-        ...layout.wrapperCol,
-        offset: 8,
+  const onFinish = () => {
+    handleSubmit();
+  };
+
+  return (
+    <Form
+      {...layout}
+      name="nest-messages"
+      onFinish={onFinish}
+      style={{
+        maxWidth: 600,
       }}
     >
-      <Button type="primary" htmlType="submit">
-        Submit
-      </Button>
-    </Form.Item>
-  </Form>
-);
+      <Form.Item
+        label="FullName"
+      >
+        <Input name="fullname" onChange={handleChange} />
+      </Form.Item>
+      <Form.Item
+        label="Email"
+        rules={[
+          {
+            type: 'email',
+          },
+        ]}
+      >
+        <Input name="email" onChange={handleChange} />
+      </Form.Item>
+      <Form.Item
+        label="School-Name"
+      >
+        <Input name="schoolname" onChange={handleChange} />
+      </Form.Item>
+      <Form.Item
+        label="Phone-Number"
+      >
+        <Input name="phonenumber" onChange={handleChange} />
+      </Form.Item>
+      <Form.Item
+        label="Course"
+      >
+        <Input name="course" onChange={handleChange} />
+      </Form.Item>
+      <Form.Item label="Select your province">
+        <Select onChange={handleSelectChange}>
+          <Select.Option value="Eastern province">Eastern province</Select.Option>
+          <Select.Option value="Western province">Western province</Select.Option>
+          <Select.Option value="Sourthern province">Southern province</Select.Option>
+          <Select.Option value="Northern province">Northern province</Select.Option>
+          <Select.Option value="Kigali city">Kigali city</Select.Option>
+        </Select>
+      </Form.Item>
+      <Form.Item name={['user', 'introduction']} label="Introduction">
+        <Input.TextArea name="message" onChange={handleChange} />
+      </Form.Item>
+      <Form.Item
+        wrapperCol={{
+          ...layout.wrapperCol,
+          offset: 8,
+        }}
+      >
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+};
+
 export default Contacts;
