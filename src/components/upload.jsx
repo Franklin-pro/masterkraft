@@ -9,6 +9,7 @@ const UploadVideo = () => {
   });
 
   const [file, setFile] = useState(null);
+  console.log(file)
 
   function handleFile(event) {
     const selectedFile = event.target.files[0];
@@ -38,9 +39,10 @@ const UploadVideo = () => {
         return response.json();
       })
       .then((result) => {
-        console.log('Video uploaded successfully:', result);
+        alert('video uploaded successfully')
       })
       .catch((error) => {
+        alert(error.message)
         console.error('Error uploading video:', error.message);
       });
   }

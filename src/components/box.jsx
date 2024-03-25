@@ -1,16 +1,32 @@
 import React from "react";
 import NavBar from "./navbar";
-import box from '../assets/box.json'
 import TheBoxCard from "./boxCard";
 import Footer from "./footer";
+import axios from "axios";
+import { useState,useEffect } from "react";
 function TheBox(){
+    const [product,setProduct]= useState(null)
+
+    useEffect(()=>{
+        const fetchData = async () =>{
+          try {
+            const response = await axios.get('http://localhost:3030/API/product/get')
+            setProduct(response.data)
+          } catch (error) {
+            console.log('error',error)
+          }
+        };
+        fetchData([])
+      },[])
+
     return (
         <>
+  
   <NavBar/>
         <div className="videos">
-           {box? (box.map((learnx)=>(
+           {product? (product.datas.map((learnx)=>(
          
-            <TheBoxCard proff={learnx.name} course={learnx.description} photo = {learnx.newsImage}/> 
+            <TheBoxCard proff={learnx.productName} course={learnx.productPrice} photo = {learnx.productImage}/> 
 
            
 

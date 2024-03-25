@@ -260,7 +260,7 @@ const usenavigate = useNavigate();
              >
                 <MailIcon/> 
              </ListItemIcon>
-             <ListItemText primary="EMAIL MESSAGE" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
+             <ListItemText primary="EMAIL MESSAGE" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/message")}}/>
            </ListItemButton>
          </ListItem>
 
