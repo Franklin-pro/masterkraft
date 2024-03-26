@@ -33,7 +33,7 @@ return (
         <div className="videos">
         <div className="video-card">
    <div className="image">
-   <img src={"http://localhost:3030/videos/"  + String(props.photo).split("/").slice(-1)} alt="pt"/>
+   <img src={"https://masterkraft-bn.onrender.com/videos/"  + String(props.photo).split("/").slice(-1)} alt="pt"/>
     </div>
     <div className="video-content">
 <h1>{props.proff}</h1>

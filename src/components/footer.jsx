@@ -1,6 +1,6 @@
 import React from "react";
 import{ useState, useEffect } from 'react';
-import logo from '../assets/wek.jpg';
+import logo from '../assets/craftlogo.jpeg';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';

@@ -18,7 +18,7 @@ function Learn() {
     useEffect(()=>{
         const fetchData = async () =>{
           try {
-            const response = await axios.get('http://localhost:3030/API/video/get')
+            const response = await axios.get('https://masterkraft-bn.onrender.com/API/video/get')
             setVideo(response.data)
           } catch (error) {
             console.log('error',error)
@@ -26,7 +26,6 @@ function Learn() {
         };
         fetchData([])
       },[])
-  console.log(video)
     useEffect(()=>{
         AOS.init({duration:1000})
       })

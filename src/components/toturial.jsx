@@ -14,7 +14,7 @@ return (
         <div className="video-card">
    <div className="video">
     <Video loop>
-<source src={"http://localhost:3030/videos/"  + String(props.video).split("/").slice(-1)} type="video/mp4" />
+<source src={"https://masterkraft-bn.onrender.com/videos/"  + String(props.video).split("/").slice(-1)} type="video/mp4" />
 </Video>
     </div>
     <div className="video-content">

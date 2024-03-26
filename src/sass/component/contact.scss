@@ -96,6 +96,12 @@ color: #d5dae4;
 border-radius: 1rem;
 h3{
     font-size: 1.5rem;
+    text-transform: uppercase;
+     display: flex;
+     gap: 1rem;
+    span{
+        text-transform: capitalize;
+    }
 }
 p{
     font-size: 2rem;
