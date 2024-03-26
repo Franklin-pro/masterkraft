@@ -28,7 +28,7 @@ const UploadVideo = () => {
     formData.append('videoDescription', upload.videoDescription);
     formData.append('youtubeLink', upload.youtubeLink);
 
-    fetch('https://masterkraft-bn.onrender.com/API/video/post', {
+    fetch('http://localhost:3030/API/video/post', {
       method: 'POST',
       body: formData,
     })

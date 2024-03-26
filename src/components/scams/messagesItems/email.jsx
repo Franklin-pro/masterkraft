@@ -19,7 +19,7 @@ const fetchMessage = async ()=>{
 fetchMessage([])
 
     },[])
-    console.log(email)
+
 
 return (
     <>
