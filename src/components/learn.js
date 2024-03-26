@@ -1,18 +1,31 @@
 
 import Toturial from "./toturial"; // Typo? Should it be "Tutorial"?
-import learn from '../assets/learn.json';
-import logan from '../assets/logan.mp4';
+
 
 import NavBar from "./navbar";
 import Footer from "./footer";
 import Dids from "./dids";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 function Learn() {
-  
+
+    const [video,setVideo]= useState(null)
+
+    useEffect(()=>{
+        const fetchData = async () =>{
+          try {
+            const response = await axios.get('https://masterkraft-bn.onrender.com/API/video/get')
+            setVideo(response.data)
+          } catch (error) {
+            console.log('error',error)
+          }
+        };
+        fetchData([])
+      },[])
     useEffect(()=>{
         AOS.init({duration:1000})
       })
@@ -20,9 +33,9 @@ function Learn() {
         <>
             <NavBar />
             <div className="videos" data-oas='zoom-in'>
-                {learn ? (
-                    learn.map((learnx, index) => (
-                        <Toturial key={index} proff={learnx.name} course={learnx.description} video={logan} youtube={learnx.youtube} data-oas='zoom-in'/>
+                {video ? (
+                    video.datas.map((learnx, index) => (
+                        <Toturial key={index} proff={learnx.videoTitle} course={learnx.videoDescription} video={learnx.video} youtube={learnx.youtubeLink} data-oas='zoom-in'/>
                     ))
                 ) : (
                     <p>Loading...</p>

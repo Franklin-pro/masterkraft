@@ -22,7 +22,7 @@ const SignUp = () => {
 
   const onFinish = async(values) => {
     try {
-      const api = "http://localhost:3030/API/user/signup";
+      const api = "https://masterkraft-bn.onrender.com/API/user/signup";
       const response = await axios.post(api, {
         firstname: formData.firstname,
         lastname: formData.lastname,

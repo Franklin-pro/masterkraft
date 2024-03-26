@@ -1,5 +1,5 @@
 import React from 'react';
-import aim from '../assets/wek.jpg';
+import aim from '../assets/craftlogo.jpeg';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import {Modal} from 'antd';

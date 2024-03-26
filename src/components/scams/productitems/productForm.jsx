@@ -37,7 +37,7 @@ const UploadProduct = () => {
     formData.append('serialNumber', upload.serialNumber);
     formData.append('productPrice', upload.productPrice);
 
-    fetch('http://localhost:3030/API/product/post', {
+    fetch('https://masterkraft-bn.onrender.com/API/product/post', {
       method: 'POST',
       body: formData,
     })

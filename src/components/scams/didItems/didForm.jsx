@@ -19,7 +19,7 @@ const DidYou = () => {
 
   const onFinish = async (values) => {
     try {
-      const api = "http://localhost:3030/API/didyou/post";
+      const api = "https://masterkraft-bn.onrender.com/API/didyou/post";
       const response = await axios.post(api, {
         Title: formData.Title,
         Description: formData.Description,
