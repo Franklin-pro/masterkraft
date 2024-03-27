@@ -12,26 +12,29 @@ const layout = {
 
 const UploadProduct = () => {
   const [upload, setUpload] = useState({
-    productImage: '',
     productName: '',
     quantityAvailable: '',
     serialNumber: '',
     productPrice: '',
   });
 
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(null);
 
   function handleFile(event) {
-    setFile(event.target.files[0]);
-    setUpload({
-      ...upload,
-      productImage: event.target.files[0],
-    });
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
   }
 
   function handleUpload() {
+    if (!file) {
+      message.error('Please select a file to upload.');
+      return;
+    }
+
     const formData = new FormData();
-    formData.append('productImage', upload.productImage, file);
+    formData.append('productImage', file); // Use 'productImage' as the parameter name
+
+    // Append other form data fields
     formData.append('productName', upload.productName);
     formData.append('quantityAvailable', upload.quantityAvailable);
     formData.append('serialNumber', upload.serialNumber);
@@ -52,7 +55,6 @@ const UploadProduct = () => {
         message.success('Product uploaded successfully');
         // Reset form fields and selected file
         setUpload({
-          productImage: '',
           productName: '',
           quantityAvailable: '',
           serialNumber: '',
