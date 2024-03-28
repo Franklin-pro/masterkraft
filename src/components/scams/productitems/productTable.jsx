@@ -10,6 +10,9 @@ import Paper from '@mui/material/Paper';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -30,20 +33,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein,serial) {
-  return { name, calories, fat,serial,carbs,protein };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'axr4eqs',23,23),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3,'axr4eqs',23,23),
-  createData('Eclair', 262, 16.0, 24, 6.0,'axr4eqs',23,23),
-  createData('Cupcake', 305, 3.7, 67, 4.3,'axr4eqs',23,23),
-  createData('Gingerbread', 356, 16.0, 49, 3.9,'axr4eqs',23,23),
-  
-];
+
+
 
 export default function ProductTables() {
+  const [product, setProduct]= useState([])
+
+  useEffect(()=>{
+    const fetchProduct = async ()=>{
+       const response = await axios.get(`https://masterkraft-bn.onrender.com/API/product/get`)
+       setProduct(response.data)
+    };
+    fetchProduct([])
+  },[])
+  console.log(product)
   return (
     <>
     <div className='items'>
@@ -63,16 +67,16 @@ export default function ProductTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {product && product.datas && product.datas.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {row.productName}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.serial}</StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
+              <StyledTableCell align="right">{row.productPrice}</StyledTableCell>
+              <StyledTableCell align="right">{row.quantityAvailable}</StyledTableCell>
+              <StyledTableCell align="right">{row.serialNumber}</StyledTableCell>
          
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell align="right">{row.postAt}</StyledTableCell>
               <div className='king'>
               <DeleteIcon className='iconx delete'/>
               <BorderColorIcon className='iconx update'/>

@@ -63,12 +63,12 @@ export default function CustomerTables() {
             <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>SERIAL NUMBER</StyledTableCell>
             <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>QUANTITY</StyledTableCell>
             <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>PRICE</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>AMOUNT OF IMPORT</StyledTableCell>
+           
             <StyledTableCell align="center" style={{fontSize:'1.4rem',backgroundColor:'#fdc800'}} colSpan={2}>OPTIONS</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.datas.map((row) => (
+          {users && users.datas && users.datas.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
                 {row.firstname}
