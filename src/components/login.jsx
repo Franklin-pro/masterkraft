@@ -28,15 +28,21 @@ const Login = () => {
           'Content-Type': 'application/json'
         }
       });
-      console.log(response.data.data.user.role)
 
-     
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('role', response.data.data.user.role);
+      const token = response.data.token;
+      const role = response.data.data.user.role;
+
+      if (!token) {
+        alert("No token provided. User cannot access the dashboard.");
+        return;
+      }
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
 
       alert("Login successful!");
 
-      if (response.data.data.user.role === 'admin') {
+      if (role === 'admin') {
         window.location.href='./dashboard'
       } else {
         window.location.href='./wekraft'
@@ -46,9 +52,8 @@ const Login = () => {
       if (error.response) {
         alert(error.response.data.message);
       } else {
-  
         console.error('Error during API call:', error);
-        alert("network error check your network.");
+        alert("Network error. Check your network connection.");
       }
     }
   };

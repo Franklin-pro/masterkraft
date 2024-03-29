@@ -3,6 +3,7 @@ import NavBar from "./navbar";
 import TheBoxCard from "./boxCard";
 import Footer from "./footer";
 import axios from "axios";
+import { Spin } from 'antd';
 import { useState,useEffect } from "react";
 function TheBox(){
     const [product,setProduct]= useState(null)
@@ -32,7 +33,7 @@ function TheBox(){
 
            
     ))):(
-        <p>Loading...</p>
+        <Spin/>
     )}
     </div>
     <Footer/>

@@ -11,7 +11,7 @@ import Login from './login';
 function NavBar(){
     const[isMobile,setIsMobile]= useState(false);
 
-    const [IsOpen, setIsOpen] = useState(true);
+    const [IsOpen, setIsOpen] = useState(false);
    
 
 const handleOpen = ()=>{

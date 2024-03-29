@@ -59,10 +59,11 @@ export default function CustomerTables() {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell style={{fontSize:'1.8rem'}}>NAME ITEMS</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>SERIAL NUMBER</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>QUANTITY</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>PRICE</StyledTableCell>
+            <StyledTableCell style={{fontSize:'1.8rem'}}>FIRST NAME</StyledTableCell>
+            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>LAST NAME</StyledTableCell>
+            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>EMAIL</StyledTableCell>
+            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>ROLE</StyledTableCell>
+            
            
             <StyledTableCell align="center" style={{fontSize:'1.4rem',backgroundColor:'#fdc800'}} colSpan={2}>OPTIONS</StyledTableCell>
           </TableRow>
