@@ -18,64 +18,58 @@ function Display() {
                 }
                 const responseData = await response.json();
     
-                // Check if responseData is an object and contains an array property
-                if (typeof responseData !== 'object' || !Array.isArray(responseData.data)) {
-                    throw new Error('Invalid data format: expected object with "data" array property');
+                if (!Array.isArray(responseData.datas)) {
+                    throw new Error('Invalid data format: expected an array');
                 }
     
-                const filtered = responseData.data.filter(mentorItem => mentorItem.id === currentIndex + 1);
-                setFilteredMentors(() => filtered); // Using functional update to avoid infinite loop
+                setFilteredMentors(responseData.datas); 
             } catch (error) {
                 console.error('Error fetching data:', error);
-                // Handle error (e.g., show error message)
             }
         };
         fetchData();
-    }, [currentIndex, filteredMentors]); 
-    
+    }, []);
+     
     console.log(filteredMentors)
-
     const nextMentor = () => {
         setCurrentIndex(prevIndex => prevIndex + 1);
         setNextClicked(true);
     };
 
+    const previousMentor = () => {
+        setCurrentIndex(prevIndex => prevIndex - 1);
+        setNextClicked(false);
+    };
+
     return (
         <>
-        
             <div className="read-container">
                 <div className="dids">
-                    {filteredMentors.length > 0 ? (
-                        filteredMentors && filteredMentors.datas && filteredMentors.map((mentorItem) => (
-            
-                         <>
-                           <div className="did" key={mentorItem.id}>
-                                <div className="image-container">
-                                    <div className="image">
-                                        <img src={temp} alt="home" />
-                                    </div>
-                                   
-                                </div>
-                                <div className="description-container">
-                                    <div className="head">
-                                        <h1>{mentorItem.Title}</h1>
-                                    </div>
-                                    <div className="text">
-                                        <p>{mentorItem.Description}</p>
-                                    </div>
-                                    
-                                </div>
-                                
-                            </div>
-                            <div className="icon-footer">
-                                 <SkipPreviousIcon className={`icon next ${nextClicked ? 'black' : 'green'}`} onClick={() => setCurrentIndex(prevIndex => prevIndex - 1)}/>
-                                     <SkipNextIcon className="icon pre" onClick={nextMentor}/>
-                                 </div>
-                         </>
-                        ))
-                    ) : (
-                        <p>all you was read if you want to read agani you may refresh page.</p>
-                    )}
+                {filteredMentors.length > 0 && currentIndex >= 0 && currentIndex < filteredMentors.length ? (
+    <div className="did" key={filteredMentors[currentIndex]._id}>
+        <div className="image-container">
+            <div className="image">
+                <img src={temp} alt="home" />
+            </div>
+        </div>
+        <div className="description-container">
+            <div className="head">
+                <h1>{filteredMentors[currentIndex].Title}</h1>
+            </div>
+            <div className="text">
+                <p>{filteredMentors[currentIndex].Description}</p>
+            </div>
+        </div>
+    </div>
+) : (
+    <p>No mentors available.</p>
+)}
+
+
+                    <div className="icon-footer">
+                        <SkipPreviousIcon className={`icon next ${nextClicked ? 'black' : 'green'}`} onClick={previousMentor} />
+                        <SkipNextIcon className="icon pre" onClick={nextMentor} />
+                    </div>
                 </div>
             </div>
         </>
@@ -83,5 +77,3 @@ function Display() {
 }
 
 export default Display;
-
-
