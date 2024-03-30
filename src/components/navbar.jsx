@@ -54,10 +54,10 @@ const handleClose = () =>{
                         <a href='./tools' className='link'>The Box</a>
                     </li>
                     <li>
-                        <a href='@' className='link'>about us</a>
+                        <a href='./abouts' className='link'>about us</a>
                     </li>
                     <li>
-                        <a href='@' className='link'>contact us</a>
+                        <a href='./contact' className='link'>contact us</a>
                     </li>
                     <li>
                     <a href='./signup' className='link btn in'>sign-up</a>
