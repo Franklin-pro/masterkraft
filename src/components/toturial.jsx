@@ -12,7 +12,7 @@ function Tutorial(props) {
                 <div className="videos">
                     <div className="video-card">
                        
-                        <ReactPlayer url={props.video} width={'100%'} height={'200px'} controls={true} />
+                        <ReactPlayer url={props.video} width={'100%'} height={'200px'} controls={true}  playing={false} loop={true} />
                         
                         <div className="video-content">
                             <h1>{props.proff}</h1>
