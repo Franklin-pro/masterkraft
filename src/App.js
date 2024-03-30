@@ -16,6 +16,8 @@ import Customer from "./components/scams/customer";
 import Report from "./components/scams/report";
 import SignUp from "./components/signup";
 import EmailDash from "./components/dashboard/messageEmail";
+import ContactPage from "./components/contactPage";
+import About from "./components/about";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
       <Route path="/report" element={<Report/>}></Route>
       <Route path="/message" element={<EmailDash/>}></Route>
       <Route path="/signup" element={<SignUp/>}></Route>
+      <Route path="/contact" element={<ContactPage/>}></Route>
+      <Route path="/abouts" element ={<About/>}></Route>
 
     </Routes>
    </Router>
