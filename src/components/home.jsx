@@ -26,7 +26,7 @@ const Home=()=>{
             <div className="home-text">
                 <div className="home-text-text">
                     <p className="p-one">Ignite the Spark of Imagination:</p>
-                    <p className="p-two"><span>MasterKraft's</span> Secrets to</p>
+                    <p className="p-two"><span>Wekraft's</span> Secrets to</p>
                     <p className="p-three">Nurturing <span>Young Talent</span> and</p>
                     <p className="p-four">Cultivating Lifelong Skills for a</p>
                     <p className="p-five"><span>Bright and</span> Exciting Future.</p>
