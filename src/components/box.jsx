@@ -24,7 +24,7 @@ function TheBox(){
         <>
   
   <NavBar/>
-        <div className="videos">
+        <div className="videoz">
            {product? (product.datas.map((learnx)=>(
          
             <TheBoxCard proff={learnx.productName} course={learnx.productPrice} photo = {learnx.productImage}/> 
