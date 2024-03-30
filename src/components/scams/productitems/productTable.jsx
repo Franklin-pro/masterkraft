@@ -47,6 +47,7 @@ export default function ProductTables() {
     };
     fetchProduct([])
   },[])
+  
   console.log(product)
   return (
     <>

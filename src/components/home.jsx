@@ -31,7 +31,7 @@ const Home=()=>{
                     <p className="p-four">Cultivating Lifelong Skills for a</p>
                     <p className="p-five"><span>Bright and</span> Exciting Future.</p>
                     <div className="btn">
-                        <button>EXPLORE THE BOX</button>
+                        <a href="./tools" className="expo">EXPLORE THE BOX</a>
                         </div>
                     
                 </div>
