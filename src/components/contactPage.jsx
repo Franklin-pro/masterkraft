@@ -2,7 +2,9 @@ import React from "react";
 import Contact from "./contact";
 import NavBar from "./navbar";
 import Footer from "./footer";
-
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import AttachEmailIcon from '@mui/icons-material/AttachEmail';
 const ContactPage=()=>{
     return(
         <>
@@ -11,20 +13,19 @@ const ContactPage=()=>{
             <h1>GET IN TOUCH</h1> 
             <div className="contactPage-content">
                 <div className="content-first">
-                <i class='bx bx-location-plus'></i>
+                <LocationOnIcon className="icon"/>
                 <h2>ADDRESS</h2>
                 <p>RWANDA-Kigali-Gasabo</p>
                 </div>
                 <div className="content-first">
-                <i class='bx bxs-phone'></i>
-                <h2>PHONE</h2>
-                <p>+250 788-093-456</p>
+                <PermPhoneMsgIcon className="icon"/>
+                <h2>PHONE-whatapp/call</h2>
+                <p> +250 874 4783 38</p>
                 </div>
                 <div className="content-first">
-                <i class='bx bxs-comment-dots'></i>
+                <AttachEmailIcon className="icon"/>
                 <h2>MESSAGE</h2>
                 <p>E-Mail: mastKraft@gmail.com</p>
-                <p>Whatsapp: 0789886546</p>
                 </div>
                 </div>  
         </div>

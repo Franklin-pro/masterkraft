@@ -23,7 +23,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GroupIcon from '@mui/icons-material/Group';
 import GradingIcon from '@mui/icons-material/Grading';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-
+import Diversity1Icon from '@mui/icons-material/Diversity1';
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -242,6 +242,26 @@ const usenavigate = useNavigate();
                 <CloudUploadIcon/> 
              </ListItemIcon>
              <ListItemText primary="UPLOAD" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
+           </ListItemButton>
+         </ListItem>
+         <ListItem key="ORDERING" disablePadding sx={{ display: 'block' }}>
+           <ListItemButton
+             sx={{
+               minHeight: 48,
+               justifyContent: open ? 'initial' : 'center',
+               px: 2.5,
+             }}
+           >
+             <ListItemIcon
+               sx={{
+                 minWidth: 0,
+                 mr: open ? 3 : 'auto',
+                 justifyContent: 'center',
+               }}
+             >
+                <Diversity1Icon /> 
+             </ListItemIcon>
+             <ListItemText primary="OUR-TEAM" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
            </ListItemButton>
          </ListItem>
 
