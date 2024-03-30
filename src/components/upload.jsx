@@ -3,38 +3,36 @@ import { Button, Form, Input } from 'antd';
 
 const UploadVideo = () => {
   const [upload, setUpload] = useState({
+    video : '',
     videoTitle: '',
     videoDescription: '',
     youtubeLink: '',
   });
 
-  const [file, setFile] = useState(null);
-  console.log(file)
+  // const [file, setFile] = useState(null);
+  // console.log(file)
 
-  function handleFile(event) {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile);
-  }
+  // function handleFile(event) {
+  //   const selectedFile = event.target.files[0];
+  //   setFile(selectedFile);
+  // }
 
   function handleUpload() {
-    if (!file) {
-      console.error('No file selected for upload');
-      return;
-    }
+ 
 
     const formData = new FormData();
-    formData.append('video', file);
+    formData.append('video', upload.video);
     formData.append('videoTitle', upload.videoTitle);
     formData.append('videoDescription', upload.videoDescription);
     formData.append('youtubeLink', upload.youtubeLink);
 
-    fetch('http://localhost:3030/API/video/post', {
+    fetch('https://masterkraft-bn.onrender.com/API/video/post', {
       method: 'POST',
       body: formData,
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to upload video');
+          throw new Error(`you don't have access toupload video`);
         }
         return response.json();
       })
@@ -66,7 +64,7 @@ const UploadVideo = () => {
           name="video"
           rules={[{ required: true, message: 'Please select a video file' }]}
         >
-          <Input type="file" onChange={handleFile} />
+          <Input onChange={(e) => setUpload({ ...upload, video: e.target.value })} />
         </Form.Item>
         <Form.Item label="Title" name="videoTitle" rules={[{ required: true, message: 'Please enter a title' }]}>
           <Input onChange={(e) => setUpload({ ...upload, videoTitle: e.target.value })} />

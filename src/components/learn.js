@@ -1,6 +1,6 @@
 
 import Toturial from "./toturial"; // Typo? Should it be "Tutorial"?
-
+import { Spin } from "antd";
 
 import NavBar from "./navbar";
 import Footer from "./footer";
@@ -38,7 +38,7 @@ function Learn() {
                         <Toturial key={index} proff={learnx.videoTitle} course={learnx.videoDescription} video={learnx.video} youtube={learnx.youtubeLink} data-oas='zoom-in'/>
                     ))
                 ) : (
-                    <p>Loading...</p>
+                    <Spin/>
                 )}
             </div>
 <Dids/>
