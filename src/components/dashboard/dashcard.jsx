@@ -12,11 +12,20 @@ function DashCard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const token = localStorage.getItem('token')
                 const videoResponse = await axios.get('https://masterkraft-bn.onrender.com/API/video/get');
                 setVideoCount(videoResponse.data.datas.length);
                 const orderResponse = await axios.get('https://masterkraft-bn.onrender.com/API/product/get');
                 setOrderCount(orderResponse.data.datas.length);
-                const userResponse = await axios.get('https://masterkraft-bn.onrender.com/API/user/get');
+                const userResponse = await axios.get('https://masterkraft-bn.onrender.com/API/user/get',{
+                    method: "POST",
+                   
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'auth-token': token,
+                          },
+                  
+                });
                 setUserCount(userResponse.data.datas.length);
 
             } catch (error) {

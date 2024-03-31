@@ -3,7 +3,6 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import temp from '../assets/temp2.png'
 
-
 function Display() {
     const [filteredMentors, setFilteredMentors] = useState([]);
     const [nextClicked, setNextClicked] = useState(false);
@@ -21,8 +20,9 @@ function Display() {
                 if (!Array.isArray(responseData.datas)) {
                     throw new Error('Invalid data format: expected an array');
                 }
-    
-                setFilteredMentors(responseData.datas); 
+
+                // Reverse the array before setting it in state
+                setFilteredMentors(responseData.datas.reverse()); 
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -30,7 +30,6 @@ function Display() {
         fetchData();
     }, []);
      
-    console.log(filteredMentors)
     const nextMentor = () => {
         setCurrentIndex(prevIndex => prevIndex + 1);
         setNextClicked(true);
@@ -45,26 +44,25 @@ function Display() {
         <>
             <div className="read-container">
                 <div className="dids">
-                {filteredMentors.length > 0 && currentIndex >= 0 && currentIndex < filteredMentors.length ? (
-    <div className="did" key={filteredMentors[currentIndex]._id}>
-        <div className="image-container">
-            <div className="image">
-                <img src={temp} alt="home" />
-            </div>
-        </div>
-        <div className="description-container">
-            <div className="head">
-                <h1>{filteredMentors[currentIndex].Title}</h1>
-            </div>
-            <div className="text">
-                <p>{filteredMentors[currentIndex].Description}</p>
-            </div>
-        </div>
-    </div>
-) : (
-    <p>No mentors available.</p>
-)}
-
+                    {filteredMentors.length > 0 && currentIndex >= 0 && currentIndex < filteredMentors.length ? (
+                        <div className="did" key={filteredMentors[currentIndex]._id}>
+                            <div className="image-container">
+                                <div className="image">
+                                    <img src={temp} alt="home" />
+                                </div>
+                            </div>
+                            <div className="description-container">
+                                <div className="head">
+                                    <h1>{filteredMentors[currentIndex].Title}</h1>
+                                </div>
+                                <div className="text">
+                                    <p>{filteredMentors[currentIndex].Description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <p>No mentors available.</p>
+                    )}
 
                     <div className="icon-footer">
                         <SkipPreviousIcon className={`icon next ${nextClicked ? 'black' : 'green'}`} onClick={previousMentor} />
@@ -77,3 +75,4 @@ function Display() {
 }
 
 export default Display;
+
