@@ -42,18 +42,24 @@ const token = localStorage.getItem('token')
 
     fetch('https://masterkraft-bn.onrender.com/API/product/post', {
       method: 'POST',
-      'auth-token':token,
-      'Content-Type': 'application/json',
+      headers: {
+        'auth-token': token,
+      },
       body: formData,
     })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to upload product. Please try again.');
-        }
+       try {
+         if (!response.ok) {
+           throw new Error('Failed to upload product. Please try again.');
+         }
+       } catch (error) {
+        alert(error.response.data.message)
+       }
         return response.json();
+      
       })
       .then((result) => {
-        console.log('success', result);
+        
         message.success('Product uploaded successfully');
         // Reset form fields and selected file
         setUpload({
@@ -71,7 +77,7 @@ const token = localStorage.getItem('token')
   }
 
   const onFinish = () => {
-    console.log(upload);
+    
     handleUpload();
   };
 

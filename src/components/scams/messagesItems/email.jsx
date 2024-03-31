@@ -31,9 +31,16 @@ function Email() {
     useEffect(() => {
         const fetchMessage = async () => {
             try {
-                const response = await axios.get('https://masterkraft-bn.onrender.com/API/contact/get');
+                const token = localStorage.getItem('token');
+                const response = await axios.get('https://masterkraft-bn.onrender.com/API/contact/get', {
+                    headers: {
+                        'auth-token':token,
+                    'Content-Type': 'application/json',
+                    }
+                });
                 setEmail(response.data.datas.reverse());
             } catch (error) {
+                alert(error.response.data.message)
                 console.error('Error fetching messages:', error);
             }
         };

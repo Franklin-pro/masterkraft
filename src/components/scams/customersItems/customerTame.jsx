@@ -58,6 +58,7 @@ if(response.ok){
   console.log(`fail to delete`)
 }
     } catch (error) {
+      alert(error.response.data.message)
       console.log('network error',error)
     }
   }
@@ -65,9 +66,19 @@ if(response.ok){
 
   useEffect(()=>{
     const fetchDatas = async () =>{
-      const response = await axios.get(`https://masterkraft-bn.onrender.com/API/user/get`)
-      setUsers(response.data);
-      // console.log(response.data)
+     try {
+      const token = localStorage.getItem('token')
+       const response = await axios.get(`https://masterkraft-bn.onrender.com/API/user/get`,{
+     headers: {
+      'auth-token':token,
+      'Content-Type': 'application/json',
+     }
+       })
+       setUsers(response.data);
+       // console.log(response.data)
+     } catch (error) {
+      alert(error.response.data.message)
+     }
     };
     fetchDatas([])
   },[])
