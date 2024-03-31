@@ -19,12 +19,14 @@ const DidYou = () => {
 
   const onFinish = async (values) => {
     try {
+      const token = localStorage.getItem('token')
       const api = "https://masterkraft-bn.onrender.com/API/didyou/post";
       const response = await axios.post(api, {
         Title: formData.Title,
         Description: formData.Description,
       }, {
         headers: {
+          'auth-token': token,
           'Content-Type': 'application/json'
         }
       });

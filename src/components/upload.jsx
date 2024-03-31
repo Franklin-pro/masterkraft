@@ -18,7 +18,7 @@ const UploadVideo = () => {
   // }
 
   function handleUpload() {
- 
+ const token = localStorage.getItem('token')
 
     const formData = new FormData();
     formData.append('video', upload.video);
@@ -27,22 +27,25 @@ const UploadVideo = () => {
     formData.append('youtubeLink', upload.youtubeLink);
 
     fetch('https://masterkraft-bn.onrender.com/API/video/post', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`you don't have access toupload video`);
-        }
-        return response.json();
-      })
-      .then((result) => {
-        alert('video uploaded successfully')
-      })
-      .catch((error) => {
-        alert(error.message)
-        console.error('Error uploading video:', error.message);
-      });
+  method: 'POST',
+  headers: {
+    'auth-token': token,
+  },
+  body: formData,
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`You don't have access to upload video`);
+    }
+    return response.json();
+  })
+  .then((result) => {
+    alert('Video uploaded successfully');
+  })
+  .catch((error) => {
+    alert(error.message);
+    console.error('Error uploading video:', error.message);
+  });
   }
 
   const onFinish = () => {
