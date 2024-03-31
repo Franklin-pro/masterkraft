@@ -21,7 +21,7 @@ export default function OrderUser() {
 
     const fetchData = async () => {
       try {
-          const response = await fetch('http://localhost:3030/API/order');
+          const response = await fetch('https://masterkraft-bn.onrender.com/API/order');
           if (!response.ok) {
               throw new Error('Failed to fetch form data');
           }
@@ -40,7 +40,7 @@ export default function OrderUser() {
     const handleSubmit = async () => {
       try {
         const token = localStorage.getItem("token")
-          const response = await fetch('http://localhost:3030/API/order', {
+          const response = await fetch('https://masterkraft-bn.onrender.com/API/order', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -61,13 +61,13 @@ export default function OrderUser() {
               amount: ''
           });
 
-          console.log('Order submitted successfully');
+          alert('Order submitted successfully');
       } catch (error) {
         alert(error.message)
           console.error('Error submitting order:', error);
       }
   };
-    console.log(formData)
+    
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
             <div>
