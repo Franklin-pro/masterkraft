@@ -30,7 +30,7 @@ const UploadProduct = () => {
       message.error('Please select a file to upload.');
       return;
     }
-
+const token = localStorage.getItem('token')
     const formData = new FormData();
     formData.append('productImage', file); // Use 'productImage' as the parameter name
 
@@ -42,6 +42,8 @@ const UploadProduct = () => {
 
     fetch('https://masterkraft-bn.onrender.com/API/product/post', {
       method: 'POST',
+      'auth-token':token,
+      'Content-Type': 'application/json',
       body: formData,
     })
       .then((response) => {

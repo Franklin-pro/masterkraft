@@ -201,6 +201,19 @@
             color: #00043b;
             text-decoration: none;
         }
+        .btn{
+            font-size: 1.6rem;
+            text-transform: capitalize;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: #00043b;
+            transition: all .6s;
+            &:hover{
+                background: transparent;
+                border: 1.2px solid #00043b;
+                color: #00043b;
+            }
+        }
     }
 }
 

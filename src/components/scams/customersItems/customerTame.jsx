@@ -7,9 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -40,10 +38,35 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function CustomerTables() {
   const [users,setUsers]= useState(null)
 
+  const [deleted, setDeleted] = useState(false)
+
+  const handleDeleted = async (itemsId) => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await fetch(`https://masterkraft-bn.onrender.com/API/user/delete/${itemsId}`,{
+        method:'DELETE',
+        headers :{
+          'Content-Type': 'application/json',
+          'auth-token' : token
+        }
+      }) 
+if(response.ok){
+  setUsers(users.filter(users => users.id !== itemsId));
+  setDeleted(true)
+ 
+}else{
+  console.log(`fail to delete`)
+}
+    } catch (error) {
+      console.log('network error',error)
+    }
+  }
+  console.log(deleted)
+
   useEffect(()=>{
     const fetchDatas = async () =>{
       const response = await axios.get(`https://masterkraft-bn.onrender.com/API/user/get`)
-      setUsers(response.data)
+      setUsers(response.data);
       // console.log(response.data)
     };
     fetchDatas([])
@@ -59,6 +82,7 @@ export default function CustomerTables() {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
+          <StyledTableCell style={{fontSize:'1.8rem'}}>NO</StyledTableCell>
             <StyledTableCell style={{fontSize:'1.8rem'}}>FIRST NAME</StyledTableCell>
             <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>LAST NAME</StyledTableCell>
             <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>EMAIL</StyledTableCell>
@@ -69,23 +93,21 @@ export default function CustomerTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users && users.datas && users.datas.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.firstname}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.lastname}</StyledTableCell>
-              <StyledTableCell align="right">{row.email}</StyledTableCell>
-              <StyledTableCell align="right">{row.role}</StyledTableCell>
-              <div className='king'>
-              <DeleteIcon className='iconx delete'/>
-              <BorderColorIcon className='iconx update'/>
-              </div>
-              
-             
-            </StyledTableRow>
-          ))}
-        </TableBody>
+  {users && users.datas && users.datas.map((row, index) => (
+    <StyledTableRow key={row.name}>
+      <StyledTableCell component="th" scope="row">
+        {index + 1} 
+      </StyledTableCell>
+      <StyledTableCell align="right">{row.firstname}</StyledTableCell>
+      <StyledTableCell align="right">{row.lastname}</StyledTableCell>
+      <StyledTableCell align="right">{row.email}</StyledTableCell>
+      <StyledTableCell align="right">{row.role}</StyledTableCell>
+      <div className='king'>
+        <DeleteIcon className='iconx delete' onClick={() => handleDeleted(row._id)} />
+      </div>
+    </StyledTableRow>
+  ))}
+</TableBody>
       </Table>
     </TableContainer>
    

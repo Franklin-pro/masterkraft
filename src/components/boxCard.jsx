@@ -38,7 +38,7 @@ return (
     <div className="video-content">
 <h1>{props.proff}</h1>
 <p>{props.course}</p>
-<button to={props.youtube} className="youtube" target="blank" onClick={handleOpen}>order now</button>
+<button to={props.youtube} className="btn" target="blank" onClick={handleOpen}>order now</button>
         </div>
    </div>
 

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 import Sidebar from "../dashboard/sidebar";
 import ProductForm from "./productitems/productForm";
-import ProductTables from "./productitems/productTable";
+// import ProductTables from "./productitems/productTable";
 // import DashCard from "./dashcard";
 // import DashTable from "./dashTable";
 
@@ -21,7 +21,7 @@ function Prodcuct(){
          <Box component="main" sx={{ flexGrow: 1, p:3 }}>
          <div className="form">
          <ProductForm/>
-         <ProductTables/>
+         
          </div>
    
       </Box>
