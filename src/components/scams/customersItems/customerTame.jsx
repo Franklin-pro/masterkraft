@@ -38,8 +38,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function CustomerTables() {
   const [users,setUsers]= useState(null)
 
-  const [deleted, setDeleted] = useState(false)
-
   const handleDeleted = async (itemsId) => {
     try {
         const token = localStorage.getItem('token');
@@ -71,7 +69,6 @@ export default function CustomerTables() {
     }
 }
 
-  console.log(deleted)
 
   useEffect(()=>{
     const fetchDatas = async () =>{
@@ -91,7 +88,6 @@ export default function CustomerTables() {
     };
     fetchDatas([])
   },[])
-  console.log(users)
   return (
     <>
     <div className='items'>

@@ -51,6 +51,8 @@ export default function OrderUser() {
 
           if (!response.ok) {
               throw new Error(response.data.error.message);
+          }else{
+            alert(`ordering successfully done!!`)
           }
 
           // Optionally, you can clear the form data or perform other actions after successful submission
@@ -63,7 +65,7 @@ export default function OrderUser() {
 
           alert('Order submitted successfully');
       } catch (error) {
-        alert(error.message)
+        alert(`you don't have access please login before`)
           console.error('Error submitting order:', error);
       }
   };
