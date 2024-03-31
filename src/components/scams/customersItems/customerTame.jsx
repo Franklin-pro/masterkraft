@@ -42,26 +42,35 @@ export default function CustomerTables() {
 
   const handleDeleted = async (itemsId) => {
     try {
-      const token = localStorage.getItem('token')
-      const response = await fetch(`https://masterkraft-bn.onrender.com/API/user/delete/${itemsId}`,{
-        method:'DELETE',
-        headers :{
-          'Content-Type': 'application/json',
-          'auth-token' : token
+        const token = localStorage.getItem('token');
+        const response = await fetch(`https://masterkraft-bn.onrender.com/API/user/delete/${itemsId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': token
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to delete item with ID ${itemsId}`);
         }
-      }) 
-if(response.ok){
-  setUsers(users.filter(users => users.id !== itemsId));
-  setDeleted(true)
- 
-}else{
-  console.log(`fail to delete`)
-}
+
+        const data = await response.json();
+
+        // Check if the response contains a message property
+        const message = data?.message || 'Item deleted successfully!';
+
+        // Store the message in local storage
+        localStorage.setItem('deletedMessage', message);
+
+        // Reload the page
+        window.location.reload();
     } catch (error) {
-      alert(error.response.data.message)
-      console.log('network error',error)
+        console.error('Error deleting item:', error);
+        alert(error.message);
     }
-  }
+}
+
   console.log(deleted)
 
   useEffect(()=>{

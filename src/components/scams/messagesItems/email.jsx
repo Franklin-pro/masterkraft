@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 function Email() {
     const [email, setEmail] = useState(null);
-    const [deleted, setDeleted] = useState(false);
+    
 
     const handleDeleted = async (itemsId) => {
         try {
@@ -17,16 +17,21 @@ function Email() {
                     'auth-token': token
                 }
             });
-            if (response.ok) {
-                setEmail(email.filter(email => email.id !== itemsId));
-                setDeleted(true);
-            } else {
-                console.log(`Failed to delete`);
+    
+            if (!response.ok) {
+                throw new Error(`Failed to delete item with ID ${itemsId}`);
             }
+    
+            const data = await response.json();
+            const message = data?.message || 'Item deleted successfully!';
+            localStorage.setItem('deletedMessage', message);
+            window.location.reload();
         } catch (error) {
-            console.log('Network error', error);
+            console.error('Error deleting item:', error);
+            alert(error.message);
         }
     }
+    
 
     useEffect(() => {
         const fetchMessage = async () => {
@@ -72,7 +77,7 @@ function Email() {
                     </div>
                 </div>
             </div>
-            {deleted && <p>Deleted successfully!</p>}
+           
         </div>
     );
 }
