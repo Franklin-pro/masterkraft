@@ -90,10 +90,12 @@
 // -------message-displayed------------------
 
 .message-cont{
-    display: flex;
+   
     gap: 3rem;
-    flex-wrap: wrap;
+    
     padding: 3rem;
+   
+    
 }
 .messagex{
     padding: 1rem;
@@ -102,7 +104,13 @@ line-height: 3rem;
 font-family: "Nunito", sans-serif;
 color: #d5dae4;
 border-radius: 1rem;
+width: 80%;
 
+.delete{
+    color: red;
+    font-size: 3rem;
+    cursor: pointer;
+}
 
 h3{
     font-size: 1.5rem;

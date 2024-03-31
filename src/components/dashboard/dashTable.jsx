@@ -7,9 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
+
 import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -33,21 +32,38 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein,serial) {
-  return { name, calories, fat,serial };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'axr4eqs'),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3,'axr4eqs'),
-  createData('Eclair', 262, 16.0, 24, 6.0,'axr4eqs'),
-  createData('Cupcake', 305, 3.7, 67, 4.3,'axr4eqs'),
-  createData('Gingerbread', 356, 16.0, 49, 3.9,'axr4eqs'),
-  
-];
+
 
 export default function DashTables() {
   const [product, setProduct] = useState([])
+  const [deleted, setDeleted] = useState(false)
+
+
+  const handleDeleted = async (itemsId) => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await fetch(`https://masterkraft-bn.onrender.com/API/product/delete/${itemsId}`,{
+        method:'DELETE',
+        headers :{
+          'Content-Type': 'application/json',
+          'auth-token' : token
+        }
+      }) 
+if(response.ok){
+  setProduct(product.filter(product => product.id !== itemsId));
+  setDeleted(true)
+  alert(`deleted successfully`)
+}else{
+  console.log(`fail to delete`)
+}
+if(deleted){
+  alert(`deleted successfully`)
+}
+    } catch (error) {
+      console.log('network error',error)
+    }
+  }
 
   useEffect(()=>{
     const fetchData = async () =>{
@@ -57,19 +73,20 @@ export default function DashTables() {
     fetchData([])
 
   },[])
-  console.log(product)
+
   return (
     <>
     <div className='items'>
     <h1>IMPORT ITEMS TABLE</h1>
-    <Button className='btn'>add items</Button>
+
     </div>
    
 <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell style={{fontSize:'1.8rem'}}>NAME ITEMS</StyledTableCell>
+          <StyledTableCell style={{fontSize:'1.8rem'}}>NO</StyledTableCell>
+          <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>NAME ITEMS</StyledTableCell>
             <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>SERIAL NUMBER</StyledTableCell>
             <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>SIZE/MARK</StyledTableCell>
             <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>AMOUNT OF IMPORT</StyledTableCell>
@@ -78,18 +95,18 @@ export default function DashTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {product && product.datas && product.datas.map((row) => (
+          {product && product.datas && product.datas.map((row,index) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
-                {row.productName}
+                {index + 1}
               </StyledTableCell>
+              <StyledTableCell align="right">{row.productName}</StyledTableCell>
               <StyledTableCell align="right">{row.productPrice}</StyledTableCell>
               <StyledTableCell align="right">{row.quantityAvailable}</StyledTableCell>
               <StyledTableCell align="right">{row.serialNumber}</StyledTableCell>
               <StyledTableCell align="right">{row.postAt}</StyledTableCell>
               <div className='king'>
-              <DeleteIcon className='iconx delete'/>
-              <BorderColorIcon className='iconx update'/>
+              <DeleteIcon className='iconx delete' onClick={() => handleDeleted(row._id)} />
               </div>
               
              
@@ -112,7 +129,7 @@ export default function DashTables() {
             <StyledTableCell align="center" style={{fontSize:'1.4rem',backgroundColor:'#fdc800'}} colSpan={2}>OPTIONS</StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        {/* <TableBody>
           {rows.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
@@ -122,13 +139,13 @@ export default function DashTables() {
               <StyledTableCell align="right">{row.calories}</StyledTableCell>
               <StyledTableCell align="right">{row.fat}</StyledTableCell>
               <div className='king'>
-              <DeleteIcon className='iconx delete'/>
+              <DeleteIcon className='iconx delete' />
               <BorderColorIcon className='iconx update'/>
               </div>
              
             </StyledTableRow>
           ))}
-        </TableBody>
+        </TableBody> */}
       </Table>
     </TableContainer>
     </>

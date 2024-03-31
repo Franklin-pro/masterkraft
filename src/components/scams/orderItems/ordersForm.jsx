@@ -9,7 +9,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -75,7 +74,6 @@ export default function OrderTables() {
               <StyledTableCell align="right">{row.protein}</StyledTableCell>
               <div className='king'>
               <DeleteIcon className='iconx delete'/>
-              <BorderColorIcon className='iconx update'/>
               </div>
               
              
