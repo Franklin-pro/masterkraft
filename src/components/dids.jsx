@@ -21,7 +21,7 @@ function Display() {
                     throw new Error('Invalid data format: expected an array');
                 }
 
-                // Reverse the array before setting it in state
+               
                 setFilteredMentors(responseData.datas.reverse()); 
             } catch (error) {
                 console.error('Error fetching data:', error);
