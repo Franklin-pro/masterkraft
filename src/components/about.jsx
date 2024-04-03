@@ -1,14 +1,23 @@
 import React from "react";
 import qt from "../assets/Screenfour.png";
-import team from "../assets/temp.jpg";
-import teama from "../assets/temp2.png";
-import teamb from "../assets/temp1.jpg";
-import teamc from "../assets/Screen.png";
-import teamd from "../assets/Screentwo.png";
 import Footer from "./footer";
 import NavBar from "./navbar";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 const About=()=>{
+    const [team, setTeam]= useState([])
+
+    useEffect(()=>{
+      const fetchProduct = async ()=>{
+         const response = await axios.get(`https://masterkraft-bn.onrender.com/API/team/get`)
+         setTeam(response.data)
+      };
+      fetchProduct([])
+    },[])
+    
+    console.log(team)
     return(<>
     <NavBar/>
     <div className="about-container">
@@ -44,42 +53,31 @@ const About=()=>{
                <img src={qt} alt="" />
                </div>
             </div>
+         
             <div className="ourTeam">
-            <img src={team} alt="" />
-                <div className="ourTeam-div-container">
-                    <h1>THE TEAM.</h1>
-                    <div className="ourTeam-container">
-                        <div className="ourTeam-card">
-                            <div className="ourTeam-img">
-                            <img src={teama} alt="" />
-                            </div>
-                            <h3>Kagabo Japhet</h3>
-                            <p>Ceo</p>
-                        </div>
-                        <div className="ourTeam-card">
-                            <div className="ourTeam-img">
-                            <img src={teamb} alt="" />
-                            </div>
-                            <h3>Kagabo Japhet</h3>
-                            <p>Ceo</p>
-                        </div>
-                        <div className="ourTeam-card">
-                            <div className="ourTeam-img">
-                            <img src={teamc} alt="" />
-                            </div>
-                            <h3>Kagabo Japhet</h3>
-                            <p>Ceo</p>
-                        </div>
-                        <div className="ourTeam-card">
-                            <div className="ourTeam-img">
-                            <img src={teamd} alt="" />
-                            </div>
-                            <h3>Kagabo Japhet</h3>
-                            <p>Ceo</p>
-                        </div>
+           
+            <div className="head">
+                    <h1>OUR TEARM</h1>
                     </div>
+                <div className="ourTeam-div-container">
+                   
+                 {team && team.datas && team.datas.map((row)=>(
+                    <div className="ourTeam-container">
+                    <div className="ourTeam-card">
+                        <div className="ourTeam-img">
+                        <img src={row.teamImage.url} alt="" />
+                        </div>
+                        <h3>{row.personName}</h3>
+                        <p>{row.personWork}</p>
+                    </div>
+
+                </div>
+                 ))}
+
+                   
                 </div>
             </div>
+          
         </div>
     </div>
     <Footer/>

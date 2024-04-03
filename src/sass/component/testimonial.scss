@@ -6,6 +6,12 @@
   
     border-radius: 2rem;
 
+// ------------active-----------
+
+
+// ----------end active----------
+
+
     
     p{
         font-size: 1.7rem;
@@ -176,7 +182,7 @@
     background: #fff;
     width: 100%;
     height: auto;
-    padding: 3rem;
+  
     .about-all-content{
         width: 100%;
         height: auto;
@@ -311,17 +317,17 @@
             .ourTeam-div-container{
                 width: 100%;
                 height: auto;
-                position: absolute;
-                display: flex;
-                flex-direction: column;
+                display: grid;
+            grid-template-columns: repeat(4,1fr);
                 align-items: center;
                 justify-content:flex-end;
+                padding: 2rem;
                 gap: 2rem;
                 top: 0;
                 right: 0rem;
                 left: 0rem;
                 bottom: 0rem;
-                background-image: linear-gradient(180deg, #00214766,#002147f8, #002147);
+                background-image: linear-gradient(180deg, #002147f8,#002147f8, #00214766);
                 h1{
                     font-size: 4rem;
                     color: #fff;
@@ -333,14 +339,14 @@
                 }
                 @media(max-width:430px){
                     width: 100%;
-                    height: 1199px;
+                    
                     h1{
                         font-size: 2rem;
                     }
                  }
                 .ourTeam-container{
                     width: 100%;
-                    height: 400px;
+                    
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
@@ -352,7 +358,7 @@
                     }
                     @media(max-width:900px){
                         width: 100%;
-                        height: 400px;
+                       
                     }
                     @media(max-width:867px){
                         gap: 1rem;
@@ -424,7 +430,34 @@
                     }
                 }
             }
+
+            @media screen and (max-width:980px) {
+                .ourTeam-div-container{
+                    grid-template-columns: repeat(3,1fr);
+                }
+            }
+            @media screen and (max-width:660px) {
+                .ourTeam-div-container{
+                    grid-template-columns: repeat(2,1fr);
+                }
+            }
+            @media screen and (max-width:400px) {
+                .ourTeam-div-container{
+                    grid-template-columns: repeat(1,1fr);
+                }
+            }
+
+            .head{
+                background-color: #002147;
+                color: #ffff;
+                padding: 1rem;
+                text-align: center;
+            }
+        }
+    }
+    @media screen and (max-width:390px) {
+        .about-container{
+            padding: 0;
         }
     }
 }
-

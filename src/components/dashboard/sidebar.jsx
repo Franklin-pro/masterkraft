@@ -261,7 +261,7 @@ const usenavigate = useNavigate();
              >
                 <Diversity1Icon /> 
              </ListItemIcon>
-             <ListItemText primary="OUR-TEAM" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
+             <ListItemText primary="OUR-TEAM" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/tearm")}}/>
            </ListItemButton>
          </ListItem>
 
