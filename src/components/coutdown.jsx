@@ -11,7 +11,7 @@ const CountDown=()=>{
         return () => clearInterval(timer);
       }, []);
     
-      const currentDay = currentTime.toLocaleDateString(undefined, { weekday: 'long' });
+      const currentDay = currentTime.getDay(undefined, { weekday: 'long' });
       const currentHour = currentTime.getHours();
       const currentMinute = currentTime.getMinutes();
       const currentSecond = currentTime.getSeconds();
@@ -29,12 +29,12 @@ const CountDown=()=>{
                 <div className="home-bottom-date">
                     <div className="days">
                         <h1>{currentDay}</h1>
-                        <p>Days</p>
+                        <p>Day</p>
                     </div>
                     <p className="colon">:</p>
                     <div className="hours">
                         <h1>{currentHour}</h1>
-                        <p>hours</p>
+                        <p>hour</p>
                     </div>
                     <p className="colon">:</p>
                     <div className="minutes">
