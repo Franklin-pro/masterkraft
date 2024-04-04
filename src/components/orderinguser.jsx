@@ -10,7 +10,8 @@ export default function OrderUser() {
         email: '',
         shippingAddress: ''
     });
-    const [productId, setProductId] = useState('');
+    const [selectedProductId, setSelectedProductId] = useState(null);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -18,15 +19,19 @@ export default function OrderUser() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://masterkraft-bn.onrender.com/API/order');
+            const response = await fetch(`https://masterkraft-bn.onrender.com/API/product/get`);
             if (!response.ok) {
-                throw new Error('Failed to fetch form data');
+                throw new Error('Failed to fetch products');
             }
-            const formDataFromApi = await response.json();
-            setProductId(formDataFromApi.productId); 
+            const productsData = await response.json();
+            setProducts(productsData);
         } catch (error) {
-            console.error('Error fetching form data:', error);
+            console.error('Error fetching products:', error);
         }
+    };
+
+    const handleProductClick = (productId) => {
+        setSelectedProductId(productId);
     };
 
     const handleChange = (event) => {
@@ -37,7 +42,7 @@ export default function OrderUser() {
     const handleSubmit = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`https://masterkraft-bn.onrender.com/API/order/${productId}`, {
+            const response = await fetch(`https://masterkraft-bn.onrender.com/API/order/${selectedProductId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,6 +72,12 @@ export default function OrderUser() {
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
             <div>
+                {products && products.datas && products.datas.map(product => (
+                    <div key={product._id} onClick={() => handleProductClick(product._id)}>
+                        <p>{product.name}</p>
+                        <p>{product.price}</p>
+                    </div>
+                ))}
                 <TextField
                     label="Quantity"
                     name="quantity"
@@ -96,7 +107,7 @@ export default function OrderUser() {
                     onChange={handleChange}
                     sx={{ m: 1, width: '25ch' }}
                 />
-                <Button onClick={handleSubmit}>Order Now</Button>
+                 <Button onClick={handleSubmit}>Order Now</Button>
             </div>
         </Box>
     );

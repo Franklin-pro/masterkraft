@@ -35,16 +35,16 @@ function Email() {
     
 
     const handleReply = (email) => {
-        // Open the reply modal
+       
         setEmailToReply(email);
         setReplyModalVisible(true);
     }
     const handleReplyChange = (event) => {
         setReplyMessage(event.target.value);
     }
-    const handleSendReply = async () => {
+    const handleSendReply = async (itemsId) => {
         try {
-            await axios.post('https://masterkraft-bn.onrender.com/API/email/reply', {
+            await axios.post(`https://masterkraft-bn.onrender.com/API/email/reply/${itemsId}`, {
                 recipientEmail: emailToReply,
                 replyMessage
             });
@@ -93,7 +93,7 @@ function Email() {
                                     <h3>course:<b>{message.course}</b></h3>
                                     <h3>schoolName:{message.schoolname}</h3>
                                     <DeleteIcon className='iconx delete' onClick={() => handleDeleted(message._id)} />
-                                    <Button onClick={() => handleReply(message.email)}>Reply</Button>
+                                    <Button onClick={() => handleReply(message._id)}>Reply</Button>
                                 </div>
                             ))
                         ) : (

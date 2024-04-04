@@ -203,12 +203,12 @@
             height: auto;
             display: flex;
             justify-content: right;
-            align-items: end;
+            align-items: flex-end;
             position: relative;
             @media(max-width:600px){
             display: flex;
             justify-content: center;
-            align-items:end;
+            align-items:flex-end;
             width: 100%;
             height: auto;
         }

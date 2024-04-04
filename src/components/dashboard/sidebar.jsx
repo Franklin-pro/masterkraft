@@ -241,7 +241,7 @@ const usenavigate = useNavigate();
              >
                 <CloudUploadIcon/> 
              </ListItemIcon>
-             <ListItemText primary="UPLOAD" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/report")}}/>
+             <ListItemText primary="UPLOAD" sx={{ opacity: open ? 1 : 0 }} onClick={()=>{usenavigate("/upload")}}/>
            </ListItemButton>
          </ListItem>
          <ListItem key="ORDERING" disablePadding sx={{ display: 'block' }}>
