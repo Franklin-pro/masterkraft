@@ -36,6 +36,7 @@ const SignUp = () => {
       });
 
       alert(response.data.message)
+      window.location.href('./wekraft')
     } catch (error) {
   
 
