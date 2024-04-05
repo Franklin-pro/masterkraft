@@ -12,7 +12,7 @@ function TheBoxCard(props){
 
     const handleOpen = ()=>{
         setIsOpen(true)
-        setProductUrl(`http://localhost:3001/?id=${props.id}`);
+        setProductUrl(`/?id=${props.id}`);
     }
     const handleClose = () =>{
         setIsOpen(false)
