@@ -12,7 +12,7 @@ function TheBoxCard(props){
 
     const handleOpen = ()=>{
         setIsOpen(true)
-        setProductUrl(`/?id=${props.id}`);
+        setProductUrl(`https://masterkraft.vercel.app/?id=${props.id}`);
     }
     const handleClose = () =>{
         setIsOpen(false)
