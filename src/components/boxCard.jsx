@@ -8,9 +8,11 @@ import { Modal } from "antd";
 
 function TheBoxCard(props){
     const [IsOpen, setIsOpen] = useState(false);
+    const [productUrl, setProductUrl] = useState('');
 
     const handleOpen = ()=>{
         setIsOpen(true)
+        setProductUrl(`http://localhost:3001/?id=${props.id}`);
     }
     const handleClose = () =>{
         setIsOpen(false)
@@ -38,7 +40,9 @@ return (
     <div className="video-content">
 <h1>{props.proff}</h1>
 <p>{props.course}</p>
-<button to={props.youtube} className="btn" target="blank" onClick={handleOpen}>order now</button>
+
+<button to={props.youtube} className="btn" target="blank" onClick={handleOpen}z>order now</button>
+{window.history.pushState({}, '', productUrl)}
         </div>
    </div>
 

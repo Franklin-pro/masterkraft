@@ -27,11 +27,7 @@ function TheBox(){
         <div className="videoz">
            {product? (product.datas.slice().reverse().map((learnx, index)=>(
          
-            <TheBoxCard key={index} proff={learnx.productName} course={learnx.productPrice} photo = {learnx.productImage}/> 
-
-           
-
-           
+            <TheBoxCard key={index} proff={learnx.productName} course={learnx.productPrice} photo = {learnx.productImage} id={learnx._id}/> 
     ))):(
         <Spin/>
     )}

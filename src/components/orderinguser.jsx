@@ -4,13 +4,15 @@ import TextField from '@mui/material/TextField';
 import { Button } from 'antd';
 
 export default function OrderUser() {
+    const Params=window.location.href.split("?id=")[1]
+    console.log(Params)
     const [formData, setFormData] = useState({
         quantity: 1,
         phoneNumber: '',
         email: '',
         shippingAddress: ''
     });
-    const [selectedProductId, setSelectedProductId] = useState(null);
+    const [selectedProductId, setSelectedProductId] = useState(null)
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -42,7 +44,7 @@ export default function OrderUser() {
     const handleSubmit = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`https://masterkraft-bn.onrender.com/API/order/${selectedProductId}`, {
+            const response = await fetch(`https://masterkraft-bn.onrender.com/API/order/${Params}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
