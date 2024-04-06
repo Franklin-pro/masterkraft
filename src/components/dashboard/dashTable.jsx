@@ -12,6 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import OrderTables from '../scams/orderItems/ordersForm';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -115,39 +116,7 @@ if(deleted){
         </TableBody>
       </Table>
     </TableContainer>
-    <div className='items'>
-    <h1>EXPORT ITEMS TABLE</h1>
-    </div>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell style={{fontSize:'1.8rem'}}>NAME ITEMS</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>SERIAL NUMBER</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>SIZE/MARK</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>AMOUNT OF IMPORT</StyledTableCell>
-            <StyledTableCell align="center" style={{fontSize:'1.4rem',backgroundColor:'#fdc800'}} colSpan={2}>OPTIONS</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        {/* <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.serial}</StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <div className='king'>
-              <DeleteIcon className='iconx delete' />
-              <BorderColorIcon className='iconx update'/>
-              </div>
-             
-            </StyledTableRow>
-          ))}
-        </TableBody> */}
-      </Table>
-    </TableContainer>
+   <OrderTables/>
     </>
     
   );
