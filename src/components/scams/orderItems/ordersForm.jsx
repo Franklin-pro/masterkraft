@@ -73,7 +73,7 @@ export default function OrderTables() {
 
   useEffect(()=>{
     const fetchProduct = async ()=>{
-       const response = await axios.get(`http://localhost:3030/API/order`)
+       const response = await axios.get(`https://masterkraft-bn.onrender.com/API/order`)
        setProduct(response.data)
     };
     fetchProduct([])
