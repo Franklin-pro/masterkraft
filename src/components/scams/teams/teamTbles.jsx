@@ -41,7 +41,7 @@ export default function TeamTables() {
   const handleDeleted = async (itemsId) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3030/API/team/${itemsId}`, {
+        const response = await fetch(`https://masterkraft-bn.onrender.com/API/team/${itemsId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
