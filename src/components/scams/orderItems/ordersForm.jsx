@@ -57,13 +57,9 @@ export default function OrderTables() {
 
         const data = await response.json();
 
-        // Check if the response contains a message property
         const message = data?.message || 'Item deleted successfully!';
-
-        // Store the message in local storage
         localStorage.setItem('deletedMessage', message);
 
-        // Reload the page
         window.location.reload();
     } catch (error) {
         console.error('Error deleting item:', error);
@@ -79,7 +75,7 @@ export default function OrderTables() {
     fetchProduct([])
   },[])
   
-  console.log(product)
+ 
   return (
     <>
     <div className='items'>

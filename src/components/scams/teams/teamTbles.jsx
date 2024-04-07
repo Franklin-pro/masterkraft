@@ -35,13 +35,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function DidTables() {
+export default function TeamTables() {
   const [users,setUsers]= useState(null)
 
   const handleDeleted = async (itemsId) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`https://masterkraft-bn.onrender.com/API/didyou/delete/${itemsId}`, {
+        const response = await fetch(`http://localhost:3030/API/team/${itemsId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export default function DidTables() {
     const fetchDatas = async () =>{
      try {
       const token = localStorage.getItem('token')
-       const response = await axios.get(`https://masterkraft-bn.onrender.com/API/didyou/get`,{
+       const response = await axios.get(`https://masterkraft-bn.onrender.com/API/team/get`,{
      headers: {
       'auth-token':token,
       'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export default function DidTables() {
   return (
     <>
     <div className='items'>
-    <h1>DID YOU KNOW?</h1>
+    <h1>OUR MEMBERS</h1>
     </div>
    
 <TableContainer component={Paper}>
@@ -98,8 +98,8 @@ export default function DidTables() {
         <TableHead>
           <TableRow>
           <StyledTableCell style={{fontSize:'1.8rem'}}>NO</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.8rem'}}>DID YOU KNOW TITLE</StyledTableCell>
-            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>DID YOU KNOW DESCRIPTION</StyledTableCell>
+            <StyledTableCell align="right" style={{fontSize:'1.8rem'}}>MEMBER-NAME</StyledTableCell>
+            <StyledTableCell align="right" style={{fontSize:'1.4rem'}}>MEMBER-POSITION</StyledTableCell>
             
            
             <StyledTableCell align="center" style={{fontSize:'1.4rem',backgroundColor:'#fdc800'}} colSpan={2}>OPTIONS</StyledTableCell>
@@ -111,8 +111,8 @@ export default function DidTables() {
       <StyledTableCell component="th" scope="row">
         {index + 1} 
       </StyledTableCell>
-      <StyledTableCell align="right">{row.Title}</StyledTableCell>
-      <StyledTableCell align="right">{row.Description}</StyledTableCell>
+      <StyledTableCell align="right">{row.personName}</StyledTableCell>
+      <StyledTableCell align="right">{row.personWork}</StyledTableCell>
       <div className='king'>
         <DeleteIcon className='iconx delete' onClick={() => handleDeleted(row._id)} />
       </div>

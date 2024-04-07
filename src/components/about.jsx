@@ -17,7 +17,6 @@ const About=()=>{
       fetchProduct([])
     },[])
     
-    console.log(team)
     return(<>
     <NavBar/>
     <div className="about-container">
