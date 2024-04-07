@@ -18,7 +18,8 @@ import SignUp from "./components/signup";
 import EmailDash from "./components/dashboard/messageEmail";
 import ContactPage from "./components/contactPage";
 import About from "./components/about";
-import UploadTearm from "./components/scams/productitems/ourteam";
+
+import OurTeam from "./components/scams/teams/teams";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
       <Route path="/messages" element={<Message/>}></Route>
       <Route path="/customers" element={<Customer/>}></Route>
       <Route path="/upload" element={<Report/>}></Route>
-      <Route path="/tearm" element={<UploadTearm/>}></Route>
+      <Route path="/tearm" element={<OurTeam/>}></Route>
       <Route path="/message" element={<EmailDash/>}></Route>
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/contact" element={<ContactPage/>}></Route>

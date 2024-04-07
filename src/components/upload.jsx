@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
+import VideoTables from './videoTable';
 
 const UploadVideo = () => {
   const [upload, setUpload] = useState({
@@ -86,6 +87,7 @@ const UploadVideo = () => {
           </div>
         </Form.Item>
       </Form>
+      <VideoTables/>
     </>
   );
 };
