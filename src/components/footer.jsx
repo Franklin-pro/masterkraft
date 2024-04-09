@@ -46,7 +46,7 @@ const Footer = () => {
         <img src={logo} alt="logo"/>
         <ul>
           <li><a href="/faq">Kigali - Rwanda KG 02 ST, Umutuzo street</a></li>
-          <li><a href="/blog">education@masterkraft.com</a></li>
+          <li><a href="/blog">education@wekraft.com</a></li>
           <li><a href="/terms">+250 874 4783 38(Support)</a></li>
         </ul>
       </div>

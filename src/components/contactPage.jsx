@@ -25,7 +25,7 @@ const ContactPage=()=>{
                 <div className="content-first">
                 <AttachEmailIcon className="icon"/>
                 <h2>MESSAGE</h2>
-                <p>E-Mail: mastKraft@gmail.com</p>
+                <p>E-Mail: wekraft@gmail.com</p>
                 </div>
                 </div>  
         </div>
