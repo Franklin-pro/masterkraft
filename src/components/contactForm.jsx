@@ -108,7 +108,7 @@ const Contacts = () => {
           offset: 8,
         }}
       >
-        <Button type="primary" htmlType="submit" style={{width:'100%'}}>
+        <Button type="primary" htmlType="submit">
          GET IN TOUCH
         </Button>
       </Form.Item>
