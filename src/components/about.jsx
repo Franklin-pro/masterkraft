@@ -5,6 +5,8 @@ import NavBar from "./navbar";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 const About=()=>{
     const [team, setTeam]= useState([])
@@ -45,8 +47,8 @@ const About=()=>{
             </div>
             <div className="about-qoute">
                 <div className="qoute-p">
-                <p><i class="fa-solid fa-quote-left"></i>our work does make sense only if it is faithful witnessof his time
-                <i class="fa-solid fa-quote-right"></i></p>
+                <p><KeyboardDoubleArrowLeftIcon className="icon"/>our work does make sense only if it is faithful witnessof his time
+                <KeyboardDoubleArrowRightIcon className="icon"/></p>
                 </div>
                <div className="qoute-img">
                <img src={qt} alt="" />
