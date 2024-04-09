@@ -22,7 +22,7 @@ and experiences with us. Your feedback matters</p>
     <div className="sponsor">
     <p>our amazing parterners</p>
     <div className="our">
-    <h1>masterkraft</h1>
+    <h1>wekraft</h1>
         <h1>jasiri</h1>
     </div>
     

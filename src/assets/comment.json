@@ -1,7 +1,7 @@
 [
     {
       "_id": "65168f4182ac6af88f963803",
-      "name": "franklin",
+      "name": "Jane Mpiganzima, Parent",
       "description": "MasterKraft is a game-changer for kids. Excellent instructors, engaging courses, and 'The Box' keeps them excited to learn!",
       "location":"kigali,Rwanda",
       "teacher":"proffessor alawn",
@@ -12,9 +12,9 @@
     },
     {
         "_id": "65168f4182ac6af88f963803",
-        "name": "franklin",
-        "description": "MasterKraft is a game-changer for kids. Excellent instructors, engaging courses, and 'The Box' keeps them excited to learn!",
-        "location":"kigali,Rwanda",
+        "name": "Stewart Kabanda, Parent",
+        "description": "Our child's journey with MasterKraft has been incredible. They love the courses and projects. We're impressed with their progress!",
+        "location":"kigali,Rremera",
         "youtube":"https://www.youtube.com/watch?v=O4ybhvtUbCE",
         "teacher":"proffessor jazzy",
         "newsImage": [
@@ -23,9 +23,9 @@
       },
       {
         "_id": "65168f4182ac6af88f963803",
-        "name": "franklin",
-        "description": "MasterKraft is a game-changer for kids. Excellent instructors, engaging courses, and 'The Box' keeps them excited to learn!",
-        "location":"kigali,Rwanda",
+        "name": "Stalon Irakiza, Parent",
+        "description": "MasterKraft exceeded our expectations. The courses are fantastic, and 'The Box' adds a fun, hands-on element. Highly recommended!",
+        "location":"Nyagatare city, NY",
         "youtube":"https://www.youtube.com/watch?v=O4ybhvtUbCE",
         "teacher":"proffessor mr skillz",
         "newsImage": [
@@ -34,9 +34,9 @@
       },
       {
         "_id": "65168f4182ac6af88f963803",
-        "name": "franklin",
-        "description": "MasterKraft is a game-changer for kids. Excellent instructors, engaging courses, and 'The Box' keeps them excited to learn!",
-        "location":"kigali,Rwanda",
+        "name": "Stalon Irakiza, Parent",
+        "description": "We're thrilled with MasterKraft. Our child is thriving, and 'The Box' brings learning to life with hands-on projects. 5 stars!",
+        "location":"Nyanza city, NY",
         "teacher":"proffessor luke",
         "youtube":"https://www.youtube.com/watch?v=O4ybhvtUbCE",
         "newsImage": [

@@ -16,7 +16,7 @@ return (
             <h2>Lets Talk.</h2>
             <p>Please fill in the details and we will be in touch shortly or send us email or Call us</p>
             <div className="bold">
-            <b>Support@Masterkraft.com</b>
+            <b>Support@wekraft.com</b>
             <b>+2507878788787</b>
             </div>
             

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import axios from 'axios';
-
+import {Modal} from 'antd';
+import Login from './login';
 const layout = {
   labelCol: {
     span: 8,
@@ -20,6 +21,15 @@ const SignUp = () => {
     confirmpassword: '',
   });
 
+  const [IsOpen, setIsOpen] = useState(false);
+   
+
+  const handleOpen = ()=>{
+      setIsOpen(true)
+  }
+  const handleClose = () =>{
+    setIsOpen(false)
+}
   const onFinish = async(values) => {
     try {
       const api = "https://masterkraft-bn.onrender.com/API/user/signup";
@@ -53,6 +63,18 @@ const SignUp = () => {
   };
 
   return (
+<>
+<Modal open={IsOpen} onCancel={handleClose} footer = {null}>
+    {
+      setIsOpen && (
+                  <Login/>
+              )
+  
+    }
+  
+    </Modal>
+
+
     <div className='form-containerx'>
       <div className='form'>
         <h1>sign up form</h1>
@@ -145,9 +167,12 @@ const SignUp = () => {
               SIGN-UP
             </Button>
           </Form.Item>
+         <p>if you don't have account?<button className='link btn up' onClick={handleOpen}>log in</button></p> 
         </Form>
       </div>
     </div>
+</>
+   
   );
 };
 
