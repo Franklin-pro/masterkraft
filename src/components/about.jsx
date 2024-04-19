@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import { Image } from "antd";
 
 const About=()=>{
     const [team, setTeam]= useState([])
@@ -66,7 +67,7 @@ const About=()=>{
                     <div className="ourTeam-container">
                     <div className="ourTeam-card">
                         <div className="ourTeam-img">
-                        <img src={row.teamImage.url} alt="" />
+                        <Image width={'100%'} height={'100%'}src={row.teamImage.url} alt="" className="img"/>
                         </div>
                         <h3>{row.personName}</h3>
                         <p>{row.personWork}</p>
