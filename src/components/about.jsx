@@ -27,10 +27,10 @@ const About=()=>{
                 <div className="about-content-right">
                     <h1>ABOUT US.</h1>
                     <p>In today's digital era, where screens often dominate
-                       the attention of our children, MasterKraft offers a
+                       the attention of our children, Wekraft offers a
                        refreshing departure from idle entertainment, serving
                        as a sanctuary for meaningful, productive activities.
-                       Each MasterKraft box takes us on a journey of
+                       Each Wekraft box takes us on a journey of
                        exploration and creativity, equipping our children with
                        the necessary tools to craft, create, and broaden their
                        horizons. This experience not only nurtures their
@@ -38,7 +38,7 @@ const About=()=>{
                        curiosity, fostering a spirit of innovation.
                        <br></br>
                        <br></br>
-                       More than just a box, MasterKraft represents an
+                       More than just a box, Wekraft represents an
                        enriching experience and a profound connection. It
                        becomes an opportunity for parents and children to
                        bond through the joy of creation, dream together, and
