@@ -54,7 +54,7 @@ function Email() {
                 replyMessage
             });
 
-            console.log('Reply email sent successfully!');
+            alert('Reply email sent successfully!');
             setReplyModalVisible(false);
             setReplyMessage("");
         } catch (error) {
