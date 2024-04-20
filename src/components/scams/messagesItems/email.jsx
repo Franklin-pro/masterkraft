@@ -45,9 +45,11 @@ function Email() {
     const handleReplyChange = (event) => {
         setReplyMessage(event.target.value);
     }
-    const handleSendReply = async (email) => {
+    const handleSendReply = async (itemsId) => {
+        const Params=window.location.href.split("?id=")[1]
+        console.log(Params)
         try {
-            await axios.post(`https://masterkraft-bn.onrender.com/API/email/reply/${email}`, {
+            await axios.post(`https://masterkraft-bn.onrender.com/API/email/reply/${Params}`, {
                 recipientEmail: emailToReply,
                 replyMessage
             });
