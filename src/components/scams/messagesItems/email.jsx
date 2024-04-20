@@ -38,13 +38,16 @@ function Email() {
        
         setEmailToReply(email);
         setReplyModalVisible(true);
+         const newUrl = `${window.location.origin}?id=${email}`;
+         window.history.pushState(null, null, newUrl);
+        
     }
     const handleReplyChange = (event) => {
         setReplyMessage(event.target.value);
     }
-    const handleSendReply = async (itemsId) => {
+    const handleSendReply = async (email) => {
         try {
-            await axios.post(`https://masterkraft-bn.onrender.com/API/email/reply/${itemsId}`, {
+            await axios.post(`https://masterkraft-bn.onrender.com/API/email/reply/${email}`, {
                 recipientEmail: emailToReply,
                 replyMessage
             });
