@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Spin, Modal, Input } from "antd";
+import { Button, Spin, Modal, Input } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function Email() {
     const [email, setEmail] = useState(null);
-    const [replyMessage, setReplyMessage] = useState(""); 
-    const [replyModalVisible, setReplyModalVisible] = useState(false); 
-    // const [emailToReply, setEmailToReply] = useState(""); 
+    const [replyMessage, setReplyMessage] = useState(""); // State to hold the reply message
+    const [replyModalVisible, setReplyModalVisible] = useState(false); // State to control the visibility of the reply modal
+    const [emailToReply, setEmailToReply] = useState(""); // State to hold the email to reply to
 
     const handleDeleted = async (itemsId) => {
-       
         try {
             const token = localStorage.getItem('token');
             const response = await axios.delete(`https://masterkraft-bn.onrender.com/API/contact/delete/${itemsId}`, {
@@ -35,30 +34,33 @@ function Email() {
     }
     
 
-    // const handleReply = (email) => {
+    const handleReply = (email) => {
        
-    //     setEmailToReply(email);
-    //     setReplyModalVisible(true);
-    // }
+        setEmailToReply(email);
+        setReplyModalVisible(true);
+         const newUrl = `${window.location.origin}?id=${email}`;
+         window.history.pushState(null, null, newUrl);
+        
+    }
     const handleReplyChange = (event) => {
         setReplyMessage(event.target.value);
     }
-    // const handleSendReply = async () => {
-    //     const Params=window.location.href.split("?id=")[1]
-    //     console.log(Params)
-    //     try {
-    //         await axios.post(`https://masterkraft-bn.onrender.com/API/email/reply/${Params}`, {
-    //             recipientEmail: emailToReply,
-    //             replyMessage
-    //         });
+    const handleSendReply = async (itemsId) => {
+        const Params=window.location.href.split("?id=")[1]
+        console.log(Params)
+        try {
+            await axios.post(`https://masterkraft-bn.onrender.com/API/reply/${Params}`, {
+                recipientEmail: emailToReply,
+                replyMessage
+            });
 
-    //         console.log('Reply email sent successfully!');
-    //         setReplyModalVisible(false);
-    //         setReplyMessage("");
-    //     } catch (error) {
-    //         console.error('Error sending reply email:', error);
-    //     }
-    // }
+            console.log('Reply email sent successfully!');
+            setReplyModalVisible(false);
+            setReplyMessage("");
+        } catch (error) {
+            console.error('Error sending reply email:', error);
+        }
+    }
 
     useEffect(() => {
         const fetchMessage = async () => {
@@ -96,7 +98,7 @@ function Email() {
                                     <h3>course:<b>{message.course}</b></h3>
                                     <h3>schoolName:{message.schoolname}</h3>
                                     <DeleteIcon className='iconx delete' onClick={() => handleDeleted(message._id)} />
-                                    {/* <Button onClick={() => handleReply(message._id)}>Reply</Button> */}
+                                    <Button onClick={() => handleReply(message._id)}>Reply</Button>
                                 </div>
                             ))
                         ) : (
@@ -109,7 +111,7 @@ function Email() {
             <Modal
                 title="Compose Reply"
                 open={replyModalVisible}
-                // onOk={handleSendReply}
+                onOk={handleSendReply}
                 onCancel={() => setReplyModalVisible(false)}
                 okText="Send"
                 cancelText="Cancel"
